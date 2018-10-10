@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BlockGame</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+  <!-- Menù -->
+
+  <div class="top-bar fixed-top">
+    <div class="row">
+      <div class="col-2">
+      </div>
+      <div class="col-7">
+      </div>
+      <div class="col-2">
+        <a href="#" data-toggle="modal" data-target="#login">Accedi</a> | <a href="#">Registrati</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal LOGIN -->
+  <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="login">Accedi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="id">User</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mt-1">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="psw">Password</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal">Accedi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="menu" style="background:linear-gradient(rgba(0,0,0, 0.5),rgba(0,0,0, 0.7)), url(img/sfondo-testata.jpg); background-size:cover; background-position: top center">
+    <div class="container pt-2">
+
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+          <a href="home.html"><img src="logo/logo-esteso.png" class="img-fluid img-logo" alt=""> </a>
+        </div>
+        <div class="col-2">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- table -->
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col col-lg-3">
+      </div>
+      <div class="col col-lg-6">
+        <table class="table table-sm">
+          <h3 class="mb-5">I tuoi dati</h3>
+          <tbody>
+            <tr>
+              <th scope="row">Nome</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">Cognome</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">Indirizzo</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">Città</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">CAP</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">Cellulare</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">P. IVA</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button name="button" class="btn float-right">Registrati</button>
+      </div>
+      <div class="col col-lg-3">
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+  <!-- footer -->
+
+  <div class="jumbotron jumb-footer rounded-0 mt-5">
+    <div class="container">
+
+      <div class="row justify-content-between">
+
+        <div class="col-4">
+          <p class="text-left"><i class="fas fa-envelope mr-3"></i>Contattaci</p>
+        </div>
+        <div class="col-4">
+          <p class="text-right">Progetto Base dei Dati mod.2</p>
+        </div>
+
+      </div>
+
+      <div class="row justify-content-between">
+
+        <div class="col-4">
+          <p class="text-left"><i class="fas fa-map-marker-alt mr-3"></i>Dove siamo</p>
+        </div>
+        <div class="col-4">
+          <p class="text-right">Anno 2017-18</p>
+        </div>
+
+      </div>
+
+      <div class="row justify-content-between">
+
+        <div class="col-4">
+          <p class="text-left"><i class="fas fa-cube mr-3"></i>Spese di spedizione</p>
+        </div>
+        <div class="col-4">
+          <p class="text-right">Bogdan, Capone, Daneluzzo e Kove</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Entra</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <!-- Impostazione Username -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">@</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+
+          <!-- Impostazione Password -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">PS</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-color" data-dismiss="modal">Entra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato:300i,400,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</body>
+</html>

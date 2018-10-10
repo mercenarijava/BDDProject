@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BlockGame</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300i,400,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+<body style="background-color: #f5f5f5;">
+
+
+  <!-- Menù -->
+
+  <div class="top-bar fixed-top">
+    <div class="row">
+      <div class="col-2">
+      </div>
+      <div class="col-6">
+      </div>
+      <div class="col-4">
+        <span id="auth_status" class="mr-3" style="color:red;text-transform:uppercase;" ></span>
+		<a style="text-transform:uppercase;" id="btn_accedi" href="#" data-toggle="modal" data-target="#login">Accedi</a> | <a id="btn_registrati" style="text-transform:uppercase;" href="#">Registrati</a>
+		<a id="btn_logout" style="display: none;text-transform:uppercase;" href="#" data-toggle="modal">  Logout</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal LOGIN -->
+  <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="login">Accedi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="id">User</span>
+            </div>
+            <input id="i_username" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+          <div class="input-group mt-1">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="psw">Password</span>
+            </div>
+            <input  id="i_password" type="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="b_login" type="button" class="btn" data-dismiss="modal">Accedi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="menu">
+
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="img/testata1.jpg" alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="img/testata2.jpg" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="img/testata3.jpg" alt="Third slide">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container pt-neg">
+
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+          <a href="home.html"><img src="logo/logo-esteso.png" class="img-fluid img-logo" alt=""> </a>
+        </div>
+        <div class="col-2">
+        </div>
+      </div>
+
+      <div class="row pb-neg">
+        <div class="col">
+          <input id="input_search" class="form-control mr-sm-2 form-control-lg" type="search" placeholder="Cosa stai cercando?" aria-label="Cosa stai cercando?">
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- griglia centrale -->
+    <div class="row justify-content-start mt-5 ml-3">
+
+      <div class="col-2">
+        <h3><b>Seleziona i filtri</b></h3>
+        <h5 class="mt-3 filter-ret">Categoria</h5>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="azione" id="c_action">
+          <label class="form-check-label" for="defaultCheck1">Azione</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="guida" id="c_guida">
+          <label class="form-check-label" for="defaultCheck1">Guida</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="picchiaduro" id="c_picchiaduro">
+          <label class="form-check-label" for="defaultCheck1">Piacchiaduro</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="simulazione" id="c_simulazione">
+          <label class="form-check-label" for="defaultCheck1">Simulazione</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="sport" id="c_sport">
+          <label class="form-check-label" for="defaultCheck1">Sport</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="strategia" id="c_strategia">
+          <label class="form-check-label" for="defaultCheck1">Strategia</label>
+        </div>
+
+        <h5 class="mt-3 filter-ret">Console</h5>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="xboxone" id="c_xboxone">
+          <label class="form-check-label" for="defaultCheck1">XboxOne</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="ps4" id="c_ps4">
+          <label class="form-check-label" for="defaultCheck1">PS4</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="ps3" id="c_ps3">
+          <label class="form-check-label" for="defaultCheck1">PS3</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="nintendo" id="c_nintendo">
+          <label class="form-check-label" for="defaultCheck1">Nintendo</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="switch" id="c_switch">
+          <label class="form-check-label" for="defaultCheck1">Switch</label>
+        </div>
+
+        <h3 class="mt-3"><b>Ordina</b></h3>
+        <h5 class="mt-3 filter-ret">Prezzo</h5>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="prezzo" id="c_prezzo_crescente" value=true>
+          <label class="form-check-label" for="radioPrezzoCre">Crescente</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="prezzo" id="c_prezzo_decrescente" value=falso>
+          <label class="form-check-label" for="radioPrezzoDecre">Decrescente</label>
+        </div>
+
+        <h5 class="mt-3 filter-ret">Ordine Alfabetico</h5>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="alfabetico" id="c_AZ" value=true>
+          <label class="form-check-label" for="ordineAlfaCre">Crescente</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="alfabetico" id="c_ZA" value=false>
+          <label class="form-check-label" for="ordineAlfaDecre">Decrescente</label>
+        </div>
+
+       <button id="b_applica_filtro" type="button" class="btn btn-block mt-3"><h5>Applica Filtro</h5></button>
+      </div>
+
+
+      <div class="col-8">
+        <div id="cards_container" class="container">
+
+        </div>
+      </div>
+
+
+
+
+
+      <div class="col-2">
+        <h3><b>Il tuo carrello</b></h3>
+        <table class="table mt-3">
+          <thead>
+            <tr>
+              <th scope="col">Prodotti</th>
+              <th scope="col" class="text-center">Quantità</th>
+            </tr>
+          </thead>
+          <tbody id="carrello_body">
+		  </tbody>
+          <thead>
+            <tr>
+              <th scope="col">Totale</th>
+              <th scope="col" class="text-center"><span id="carrello_price" class="badge badge-primary">0€</span></th>
+            </tr>
+          </thead>
+        </table>
+        <button id = "carrello_buy_button" type="button" class="btn btn-block disabled" >Check Out</button>
+      </div>
+
+    </div>
+
+    <div class="row justify-content-start ml-3 mt-5">
+      <div class="col-2">
+
+      </div>
+      <div class="col-8">
+        <nav aria-label="page-navigator">
+          <ul id="pageStepper" class="pagination justify-content-center"></ul>
+        </nav>
+      </div>
+      <div class="col-2">
+
+      </div>
+
+    </div>
+
+
+
+  <!-- footer -->
+
+  <div class="jumbotron jumb-footer rounded-0 mt-3">
+    <div class="container">
+
+      <div class="row justify-content-between">
+
+        <div class="col-4">
+          <p class="text-left"><i class="fas fa-envelope mr-3"></i>Contattaci</p>
+        </div>
+        <div class="col-4">
+          <p class="text-right">Progetto Base dei Dati mod.2</p>
+        </div>
+
+      </div>
+
+      <div class="row justify-content-between">
+
+        <div class="col-4">
+          <p class="text-left"><i class="fas fa-map-marker-alt mr-3"></i>Dove siamo</p>
+        </div>
+        <div class="col-4">
+          <p class="text-right">Anno 2017-18</p>
+        </div>
+
+      </div>
+
+      <div class="row justify-content-between">
+
+        <div class="col-4">
+          <p class="text-left"><i class="fas fa-cube mr-3"></i>Spese di spedizione</p>
+        </div>
+        <div class="col-4">
+          <p class="text-right">Bogdan, Capone, Daneluzzo e Kove</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+  <!-- Menù -->
+
+  <nav class="nav-bg-trasparente">
+    <div class="container pt-2">
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+          <a href="home.html"><h1 class="titolo text-center"><i class="fab fa-stumbleupon mr-3"></i>I TUOI VESTITI A PORTATA DI CLICK</h1></a>
+        </div>
+        <div class="col-2">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-5">
+          <form class="form-inline">
+            <input class="form-control mr-sm-2 form-control-lg" type="search" placeholder="Cosa stai cercando?" aria-label="Cosa stai cercando?">
+            <button class="btn btn-lg btn-color" type="submit"><i class="fas fa-search mr-3"></i>Cerca</button>
+          </form>
+        </div>
+        <div class="col-3">
+          <a href="carrello.html"><button type="button" class="btn btn-lg btn-color btn-block"><i class="fas fa-cart-arrow-down mr-3"></i>Carrello</button></a>
+        </div>
+        <div class="col-3">
+          <a href="login.html"><button type="button" class="btn btn-lg btn-color"><i class="fas fa-user mr-3"></i>Login</button></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- immagine jumbotron -->
+
+  <div class="jumbotron jumb-testata" style="background:linear-gradient(rgba(0,0,0, 0.3),rgba(0,0,0, 0.7)), url(img/sfondo-testata.jpg); background-size:cover; background-position: center center">
+    <div class="container">
+    </div>
+  </div>
+
+  <!-- table -->
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col col-lg-5 table-bordi">
+        <table class="table table-sm">
+          <h3 class="mb-5">I tuoi acquisti</h3>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Prezzo</th>
+              <th scope="col">Quantità</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Maglietta</td>
+              <td>€ 12,45</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Gonna</td>
+              <td>€ 35,80</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Maglione</td>
+              <td>€ 9,99</td>
+              <td>2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col col-lg-1">
+        <!-- colonna vuota -->
+      </div>
+
+      <div class="col col-lg-6 table-bordi">
+        <table class="table table-sm">
+          <h3 class="mb-5">I tuoi dati</h3>
+          <tbody>
+            <tr>
+              <th scope="row">Nome</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">Cognome</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">Indirizzo</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">Cità</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">CAP</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">Cellulare</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <th scope="row">P. IVA</th>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-lg-2">
+        <!-- colonna vuota -->
+      </div>
+      <div class="col col-lg-8 buttom-text-carrello">
+        <button type="button" class="btn btn-lg btn-color-card btn-block mb-5" data-toggle="modal" data-target="#pagamento"><i class="fab fa-cc-paypal mr-3"></i>PAGA PER CONFERMARE L'ORDINE</button>
+      </div>
+      <div class="col col-lg-2">
+        <!-- colonna vuota -->
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
+
+  <!-- footer -->
+
+  <div class="jumbotron jumb-footer rounded-0">
+    <div class="container">
+
+      <div class="row justify-content-between">
+
+        <div class="col-4">
+          <p class="text-left"><i class="fas fa-envelope mr-3"></i>Contattaci</p>
+        </div>
+        <div class="col-4">
+          <p class="text-right">Progetto Base dei Dati mod.2</p>
+        </div>
+
+      </div>
+
+      <div class="row justify-content-between">
+
+        <div class="col-4">
+          <p class="text-left"><i class="fas fa-map-marker-alt mr-3"></i>Dove siamo</p>
+        </div>
+        <div class="col-4">
+          <p class="text-right">Anno 2017-18</p>
+        </div>
+
+      </div>
+
+      <div class="row justify-content-between">
+
+        <div class="col-4">
+          <p class="text-left"><i class="fas fa-cube mr-3"></i>Spese di spedizione</p>
+        </div>
+        <div class="col-4">
+          <p class="text-right">Bogdan, Capone, Daneluzzo e Kove</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="pagamento" tabindex="-1" role="dialog" aria-labelledby="pagamentoTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pagamentoTitle">Conferma acquisto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Grazie per aver acquistato dal nostro Store. Il pagamento si è concluso con successo.
+        </div>
+        <div class="modal-footer">
+          <a href="home.html"><button type="button" class="btn btn-lg btn-color-card btn-block">Chiudi</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lato:300i,400,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</body>
+</html>
