@@ -158,8 +158,9 @@ function handleFilterUpload(){
 }
 
 function buyProducts(){
-	
-	
+    sessionStorage.setItem("chart_data", JSON.stringify(carrello));
+	location.href = "carrello.html";
+
 }
 
 function login(){
