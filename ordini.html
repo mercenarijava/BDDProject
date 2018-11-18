@@ -102,9 +102,9 @@
   <div class="container mt-5">
     <div class="row">
 
-      <div class="col col-lg-5">
+      <div class="col col-lg-5 table-bordi">
         <table class="table table-sm">
-          <h3 class="mb-5">I tuoi acquisti</h3>
+          <h3 class="mb-5">Il tuo ordine attuale</h3>
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -140,56 +140,41 @@
         <!-- colonna vuota -->
       </div>
 
-      <div class="col col-lg-6">
+      <div class="col col-lg-6 table-bordi">
         <table class="table table-sm">
-          <h3 class="mb-5">I tuoi dati</h3>
+          <h3 class="mb-5">Ordini passati</h3>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Data</th>
+              <th scope="col">Importo totale</th>
+              <th scope="col">Quantità totale</th>
+            </tr>
+          </thead>
           <tbody>
             <tr>
-              <th scope="row">Nome</th>
-              <td><input type="text" class="form-control"></td>
+              <th scope="row">1</th>
+              <td><a id="" href="#" data-toggle="modal" data-target="#ordini-passati">13/09/2017</a></td>
+              <td>€ 12,45</td>
+              <td>4</td>
             </tr>
             <tr>
-              <th scope="row">Cognome</th>
-              <td><input type="text" class="form-control"></td>
+              <th scope="row">2</th>
+              <td><a id="" href="#" data-toggle="modal" data-target="#ordini-passati">13/09/2017</a></td>
+              <td>€ 35,80</td>
+              <td>1</td>
             </tr>
             <tr>
-              <th scope="row">Indirizzo</th>
-              <td><input type="text" class="form-control"></td>
-            </tr>
-            <tr>
-              <th scope="row">Cità</th>
-              <td><input type="text" class="form-control"></td>
-            </tr>
-            <tr>
-              <th scope="row">CAP</th>
-              <td><input type="text" class="form-control"></td>
-            </tr>
-            <tr>
-              <th scope="row">Cellulare</th>
-              <td><input type="text" class="form-control"></td>
-            </tr>
-            <tr>
-              <th scope="row">P. IVA</th>
-              <td><input type="text" class="form-control"></td>
+              <th scope="row">3</th>
+              <td><a id="" href="#" data-toggle="modal" data-target="#ordini-passati">13/09/2017</a></td>
+              <td>€ 9,99</td>
+              <td>2</td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col col-lg-2">
-        <!-- colonna vuota -->
-      </div>
-      <div class="col col-lg-8 buttom-text-carrello">
-        <button type="button" class="btn btn-lg btn-color-card btn-block mb-5" data-toggle="modal" data-target="#pagamento"><i class="fab fa-cc-paypal mr-3"></i>PAGA PER CONFERMARE L'ORDINE</button>
-      </div>
-      <div class="col col-lg-2">
-        <!-- colonna vuota -->
-      </div>
-
-
-    </div>
   </div>
 
 
@@ -251,6 +236,53 @@
         </div>
         <div class="modal-footer">
           <a href="home.html"><button type="button" class="btn btn-lg btn-color-card btn-block">Chiudi</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="ordini-passati" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="login">Dettagli ordine</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Prezzo</th>
+                <th scope="col">Quantità</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Maglietta</td>
+                <td>€ 12,45</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Gonna</td>
+                <td>€ 35,80</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Maglione</td>
+                <td>€ 9,99</td>
+                <td>2</td>
+              </tr>
+            </tbody>
+          </table>
+
         </div>
       </div>
     </div>

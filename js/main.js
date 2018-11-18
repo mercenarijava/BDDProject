@@ -1,5 +1,4 @@
 var NUM_ELEMS_PAGE = 12;
-var user_logged = null;
 
 var i_username;
 var i_password;
@@ -158,9 +157,12 @@ function handleFilterUpload(){
 }
 
 function buyProducts(){
+    if(sessionStorage.getItem("user_logged") == null){
+        $('#login_model').modal();
+        return;
+    }
     sessionStorage.setItem("chart_data", JSON.stringify(carrello));
 	location.href = "carrello.html";
-
 }
 
 function login(){
@@ -184,7 +186,7 @@ function handleErrorLogin(){
 	l_auth_info.style.color = "red";
 }
 function configureLoggedIn(o){
-	user_logged = o;
+    sessionStorage.setItem("user_logged", JSON.stringify(o));
 	l_auth_info.innerHTML = "User logged:  " + o.username;
 	l_auth_info.style.color = "#00FF00";
 	b_login_action.style.display = "none";
@@ -192,7 +194,7 @@ function configureLoggedIn(o){
 	b_logout_action.style.display = "initial";
 }
 function configureLoggedOut(){
-	user_logged = null;
+    sessionStorage.remove("user_logged");
 	l_auth_info.innerHTML = "";
 	l_auth_info.style.color = "#00FF00";
 	b_login_action.style.display = "initial";
