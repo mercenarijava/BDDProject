@@ -1,0 +1,527 @@
+
+*{
+	box-sizing: border-box;
+	margin: 0;
+    padding: 0;
+}
+
+body {
+	background-color: #2b2b2b;
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:14px;
+	line-height:1.5rem;
+	color:white;
+	overflow-x:hidden;
+}
+section>h1{
+	font-size: 36px;
+}
+
+
+/*-------- Video on Home ----------*/
+.video-header{
+	height:100vh;
+	display: flex;
+	align-items: center;
+	color: #000;
+}
+/* - Video - */
+.wrap{
+	max-width: 960px;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	margin:auto;
+}
+
+.fullscreen-video-wrap{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100vh;
+	width:100%;
+	z-index:-1;
+	overflow:hidden;
+}
+
+.fullscreen-video-wrap video{
+	min-height:100%;
+	min-width:100%;
+}
+/* - HEADER VIDEO CARD - */
+.header-overlay{
+	/*
+	height:100vh;
+	width:100vw;
+	*/
+	position:absolute;
+	top: 15%;
+    left: auto;
+    right: 4%;
+    bottom: auto;
+}
+
+.header-content{
+	z-index:1;
+	width: 280;
+	color:#000;
+	/*margin-top:20%;
+	
+	padding: 0 5rem;
+	*/
+}
+
+/* - Icon ARROW DOWN - */
+.arrow-icon{
+	position: absolute;
+    border-radius: 25px;
+    background-color: #00000042;
+    top: auto;
+    left: 49%;
+    right: auto;
+    bottom: 5%;
+}
+.arrow-icon>svg{
+	width:15px;
+	color: #fff;
+}
+
+.arrow-icon:hover{
+	background-color: #000;
+}
+
+/*----------------- end Video on Home ------------*/
+
+
+
+/*------------ SHOP -------------*/
+.section{
+	text-align:inherit;
+	padding-top: 103px;
+	padding-bottom: 103px;
+	font-size: 1.5rem;
+}
+
+.restrict{
+	max-width:310px;
+	padding:15px 15px;
+}
+.filtri{
+	border-top: 1px solid;
+	padding-top: 15px;
+}
+.filtri h4, .ordina h4{
+	margin-bottom:20px;
+}
+.filtri , .ordina{
+	border-bottom: 1px solid #fff;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+.filtri .row , .ordina .row{
+	margin:0px 0px;
+}
+.shop-menu{
+	background-color:#1e1e1e !important;
+	max-height: fit-content;
+	padding: 33px 35px!important;
+}
+.shop-menu .btn-filter:hover{
+	background-color:#fff!important;
+	color:#000!important;
+}
+
+/* The radio container */
+.radio-container {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radio-container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background-color: #eee;
+	border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radio-container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radio-container input:checked ~ .checkmark {
+  background-color: #ff281f;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio-container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio-container .checkmark:after {
+ 	top: 6px;
+    left: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+/* Style page navigation */
+.bckg-page-navigation{
+	font-size: 20px;
+}
+
+/* Style for not activeted page-link */
+.bckg-page-navigation a{
+	color:#000;
+}
+
+/* Style for activeted page-link */
+.bckg-page-navigation .page-item.active .page-link {
+    background-color: #ff281f;
+    border-color: #ff281f;
+}
+
+/*------------ end SHOP ----------*/
+
+
+
+/*---------------------navbar--------------------*/
+.navbar{
+	z-index:10;
+}
+.navbar-collapse{
+	padding-left: 15;
+	background-color: #222222;
+}
+.bckg-navbar{
+	padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 52px;/*modificato in base alla grandezza dello schermo*/
+	background-color:#222!important;
+	border: 1px solid #080808!important;
+}
+/* - Brand - */
+.bckg-navbar-brand{
+	height: 50px;
+    padding-top: 15px;
+    padding-bottom: 0px;
+    padding-right: 15px;
+    margin-right: 0px;
+}
+.bckg-navbar-brand>img{
+	width:280;
+	height:70;
+}
+
+/* - Pagine del navbar - */
+.navbar-dark .navbar-nav .active>.nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show>.nav-link{
+	background-color:#080808;
+}
+
+.navbar-dark .navbar-nav .active#pc>.nav-link{
+	background-color:#cd7f32!important;
+}
+.navbar-dark .navbar-nav .active#xbox>.nav-link{
+	background-color:#107c10!important;
+}
+.navbar-dark .navbar-nav .active#ps4>.nav-link{
+	background-color:#0072ce!important;
+}
+.navbar-dark .navbar-nav .active#ps3>.nav-link{
+	background-color:#02beec!important;
+}
+.navbar-dark .navbar-nav .active#nintendo>.nav-link{
+	background-color:#e60012!important;
+}
+
+@media (min-width: 992px){
+	.navbar-expand-lg .navbar-nav .nav-link {
+		padding-right: 15px;
+		padding-left: 15px;
+		padding-top: 13px;
+		padding-bottom: 13px;
+	}
+}
+
+/* - Search input - */
+.bckg-input-search{
+	padding-top:6px;
+	padding-bottom:6px;
+	padding-left: 6px;
+    padding-right: 6px;
+	background-color: #fff;
+    box-shadow: none;
+    color: #000;
+	font-size: 14px;
+    text-transform: uppercase;
+	width: 241px!important;
+}
+.bckg-input-search:focus{
+	box-shadow: none;
+}
+.bckg-input-search,.bckg-input, .bckg-btn , .login-btn{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.bckg-form-container-size{
+	width: 296px;
+    height: 34px;
+}
+
+.bckg-form-container-size>.bckg-input-search{
+    height: 100%;
+}
+.bckg-input-search, .bckg-btn{
+	border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+}
+/* - btn search - */
+.bckg-btn{
+	margin-left: -1;
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 40px;
+	height: 100%;
+    background-color: #ff281f;
+}
+.bckg-btn:focus, .login-btn:focus{
+	box-shadow: none;
+}
+
+/* - Icon Search- */
+.bckg-btn>object{
+	width:17px;
+	height:17px;
+}
+
+.bckg-btn:hover, .login-btn:hover{
+	background: #ffffff;
+    color: black;
+}
+
+/* - Icon Shopping chart - */
+/*
+.shopping-chart-icon{
+	width: 25px;
+	fill:#fff;
+}*/
+
+#shopping-cart{
+	background:url("../img/shopping.png") center no-repeat;
+	background-size:25px;
+	width:55px;
+	height:50px;
+	
+}
+#shopping-cart #cart-items{
+	color:#000;
+	background: #11e95b;/*#19da19*/
+    position: relative;
+    left: 12px;
+    top: -9px;
+    border-radius: 57px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.dropdown-shop{
+	left:-454%!important;
+	width: 306px;
+}
+.dropdown-shop object{
+	width: 20.66;
+}
+
+.dropdown-visible:hover> .dropdown-menu {
+  display: block;
+}
+.dropdown-visible:hover{
+	background-color:#929292;
+}
+
+.dropdown-shop .viewShop{
+	margin-left: 28%;
+    margin-right: 28%;
+    padding-right: 20px;
+    padding-left: 20px;
+    color: #fff!important;
+    background-color: #11e95b;
+	font-weight:700;
+}
+.dropdown-shop .viewShop:hover{
+	color:#fff!important;
+	background-color:#222;
+}
+
+
+/* - Login Button - */
+.login-btn{
+	background-color: #ff281f;
+    padding-bottom: 5px !important;
+    padding-top: 5px !important;
+    height: 32px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+	color: black !important;
+}	
+.nav-item-login{
+	height: 30px;
+    margin-top: 10px;
+}
+
+/* - Account - */
+.dropdown-account{
+	margin-top: 0px;
+    border-top-width: 0px;
+    left: -64%;
+    border-radius: 0;
+}
+.user-icon{
+	width:25px;
+}
+
+@media (max-width: 992px) {
+	.bckg-navbar-brand>img{
+		width: 158px;
+		height: 39px;
+	}
+	.bckg-navbar-brand{
+		padding-top:5px;
+	}
+}
+/*----------------------end navbar-------------------*/
+
+
+
+/*------------------- FOOTER ------------------------*/
+.page-footer{
+	background-color:#222!important;
+	padding-top: 22px;
+}
+/*- footer container -*/
+.footer-container{
+	padding-top: 15px;
+    padding-bottom: 46px;
+}
+
+.footer-container>div>div>p>a{
+	color:#fff;
+}
+
+.deep{
+	background-color: white;
+}
+/*  - payment methods - */
+
+.payment-methods>p>object, .payment-methods>object{
+	width:66px;
+	height:auto;
+}
+
+
+
+/* - footer copyright -*/
+.footer-copyright{
+	background-color: #151515;
+}
+.footer-copyright>a{
+	color:#fff;
+}
+
+
+
+/*----------------- End FOOTER ----------------------*/
+
+
+/**************help.php******************/
+.support .deep{
+	background-color:white;
+	width:100%;
+}
+.fullbackground-img{
+	position: fixed; 
+	width: 100%; 
+	height: 100%;
+	z-index:-1;
+	top:0;
+}
+.fullbackground-img img {
+	position: absolute; 
+	width:100%;
+	height: 100%;
+	top: 0; 
+	left: 0; 
+	right: 0; 
+	bottom: 0; 
+	margin: auto; 
+	opacity:0.1;
+	object-fit: cover;
+}
+.background-transparent{
+	background-color:transparent!important;
+}
+/*
+@media (max-width: 975px){
+	.fullbackground-img img{
+		width:122%;
+	}
+}
+@media (max-width: 816px){
+	.fullbackground-img img{
+		width:150%;
+	}
+}
+@media (max-width: 664px){
+	.fullbackground-img img{
+		width:180%;
+	}
+}
+@media (max-width: 550px){
+	.fullbackground-img img{
+		width:220%;
+	}
+}
+@media (max-width: 450px){
+	.fullbackground-img img{
+		width:240%;
+	}
+}*/
+/**************help.php******************/

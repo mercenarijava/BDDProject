@@ -1,0 +1,39 @@
+.btn-login{
+    background-color: #ff281f;
+    color: #fff;
+    border-radius: 0px;
+}
+
+.btn-login:hover{
+    background-color: #fff;
+    color: #000;
+    border-radius: 0px;
+}
+
+.btn-verde{
+    background-color: #ffff00;
+    border-radius: 0px;
+}
+
+
+.table .thead-light th{
+  background-color: #ff281f;
+  color: #fff;
+  border-radius: 0px;
+  border: none;
+}
+
+.btn-block{
+  width: 100%;
+}
+
+.x-delate{
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+}
+
+.dim-50{
+  width: 50%;
+}

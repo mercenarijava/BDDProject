@@ -1,0 +1,108 @@
+/*for settings.php */
+
+.bckg-settings-nav{
+	padding-right: 0;
+}
+.bckg-settings-nav ul{
+	background-color:#b91e17;
+}
+
+.bckg-settings-nav>ul{
+	border-bottom:0px;
+}
+.bckg-settings-nav>ul>li{
+	height:70px;
+}
+.bckg-settings-nav>ul>li>a{
+	height:100%;
+}
+
+.bckg-settings-nav>ul>li>a{
+	color:#fff;
+	border:0px!important;
+}
+.bckg-settings-nav>ul>li>a:hover{
+	border:0px!important;
+	background-color:#222;
+	color:#fff;
+	border-radius: 0px;
+}
+
+.bckg-settings-nav>ul>li>.active{
+    font-weight: bold;
+    background-color: #f8f8f8 !important;
+    border-radius: 0;
+	border:0!important;
+	height:100%;
+	text-align:right;
+}
+.bckg-settings-content{
+	color: #000;
+	background-color:#f8f8f8;
+}
+
+.bckg-settings-content input{
+	padding: 10px 20px !important;
+}
+.bckg-settings-content .padlock{
+	background-color: #ebebe4;
+	cursor: auto;
+}
+.bckg-settings-content .settings-btn, .bckg-settings-content .option .modify, .bckg-settings-content .option .delete{
+	width:unset;
+	right: 85px;
+    position: absolute;
+}
+.settings-form{
+	box-shadow: none;
+    background-color: unset;
+}
+
+.bckg-head{
+	font-weight:900;
+}
+
+.table td, .table th {
+	border-top:0px;
+}
+
+.bckg-form .bckg-modify{
+    font-weight: initial;
+}
+
+.bckg-form .bckg-modify, .bckg-form .bckg-delete{
+	background-color: gainsboro;
+    color: #000;
+    text-transform: initial;
+}
+
+.bckg-settings-content .option{
+	padding: 15px;
+}
+
+.bckg-settings-content .option .modify, .bckg-settings-content .option .delete{
+	display:none;
+}
+
+.bckg-settings-content .option .info{
+	-webkit-filter: blur(5px);
+    filter: blur(5px);
+}
+
+.bckg-settings-content .option input{
+	position: absolute;
+}
+
+.bckg-settings-content .option input, .bckg-settings-content .modify, .bckg-settings-content .delete{
+	color:#000;
+	background-color:#ffe000;
+}
+
+.bckg-settings-content .option .modify{
+    left: 10%;
+    right: auto;
+}
+.bckg-settings-content .option .delete{
+    left: auto;
+	right:10%;
+}

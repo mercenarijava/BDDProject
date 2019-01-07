@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "recosta32";
-$password = "boghimaN1297";
-$db_name = "blockgame";
+$username = "admin1";
+$password = "admin1";
+$db_name = "blockgamefinal";
 $connection = null;
 
 // GENERIC CLASS FILTER USED TO SELECT OPERATIONS ON DATABASE
@@ -51,6 +51,10 @@ $sql_login = "SELECT * FROM users WHERE username = '%s' AND password = '%s'";
 $sql_signin = "INSERT INTO `users`(`name`, `surname`, `address`, `phone`, `username`, `password`) VALUES ('%s','%s','%s',%d,'%s','%s')";
 $sql_get_games = "SELECT g.id AS game_id, g.title AS game_title, g.category AS game_category, g.price AS game_price, g.logo AS game_logo, g.description AS game_description, c.id AS console_id, c.name AS console_name, c.model AS console_model FROM (games g INNER JOIN games_console gc ON g.id = id_game) INNER JOIN console c ON gc.id_console = c.id %s %s LIMIT 999 OFFSET %d";
 $slq_delete_orders = "DELETE FROM `orders` WHERE id_game = %d AND username_user = '%s' AND payment_type = %d ";
+$sql_get_info_user = "SELECT * FROM users WHERE username = '%s'";
+$sql_modify_email = "UPDATE users SET username = '%s' WHERE username = '%s'";
+$sql_modify_account = "UPDATE users SET username = '%s', password = '%s' WHERE username = '%s'";
+$sql_modify_personal_info = "UPDATE users SET name = '%s', surname = '%s', address = '%s', phone = '%s' WHERE username = '%s'";
 
 function connect(){
 	// Create connection
@@ -74,18 +78,20 @@ function disconnect(){
 	}
 }
 
-function login($username, $password){
+function login($username, $pass){
+	$password= crypt($pass,'$6$rounds=5000$blockgame$');//crypt
 	$sql = sprintf($GLOBALS['sql_login'], $username, $password);
 	$result = $GLOBALS['connection']->query($sql);
 	return $result;
 }
 
-function signin($name, $surname, $address, $phone, $username, $password){
+function signin($name, $surname, $address, $phone, $username, $pass){
 	$user = login($username, $password);
 	$exists = mysqli_num_rows($user) > 0;
 	if($exists > 0){
 		return false;
 	}
+	$password= crypt($pass,'$6$rounds=5000$blockgame$');//crypt
 	$sql = sprintf($GLOBALS['sql_signin'], $name, $surname, $address, $phone, $username, $password);
 	$GLOBALS['connection']->query($sql);
 	$user = login($username, $password);
@@ -137,6 +143,31 @@ function getGames($filterGet){
 function deleteOrder($username, $id_game, $payment_type){
 	$sql = sprintf($GLOBALS['slq_delete_orders'], $id_game, $username, $payment_type);
 	$result = $GLOBALS['connection']->query($sql);
+}
+
+function getInfoUser($username){
+	$sql = sprintf($GLOBALS['sql_get_info_user'], $username);
+	$result = $GLOBALS['connection']->query($sql);
+	$row=mysqli_fetch_assoc($result);
+	return $row;
+}
+
+function modifyEmail($username,$newUsername){
+	$sql = sprintf($GLOBALS['sql_modify_email'], $newUsername ,$username);
+	$result = $GLOBALS['connection']->query($sql);
+	return $result;
+}
+
+function modifyAccount($username, $newUsername, $newPassword){
+	$sql = sprintf($GLOBALS['sql_modify_account'], $newUsername, $newPassword ,$username);
+	$result = $GLOBALS['connection']->query($sql);
+	return $result;
+}
+
+function modifyPersonalInfo($username, $name, $surname, $address, $phone){
+	$sql = sprintf($GLOBALS['sql_modify_personal_info'], $name, $surname, $address, $phone ,$username);
+	$result = $GLOBALS['connection']->query($sql);
+	return $result;
 }
 
 // COSE PER TEST
