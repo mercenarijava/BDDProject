@@ -26,19 +26,19 @@
 		}
 		else{
 			switch ($_GET["console"]){ 
-				case "PC": 
+				case "switch":
 					$pc = "active";
 					break;
-				case "XBOX": 
+				case "xboxone":
 					$xbox = "active";
 					break;
-				case "PS4": 
+				case "ps4":
 					$ps4 = "active";
 					break;
-				case "PS3": 
+				case "ps3":
 					$ps3 = "active";
 					break;
-				case "Nintendo": 
+				case "nintendo":
 					$nintendo = "active";
 					break;
 				default:
@@ -53,19 +53,19 @@
 						<a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item '.$pc.'" id="pc">
-						<a class="nav-link" href="home.php?console=PC">PC</a>
+						<a class="nav-link" href="home.php?console=switch">Switch</a>
 					</li>
 					<li class="nav-item '.$xbox.'" id="xbox">
-						<a class="nav-link" href="home.php?console=XBOX">XBOX</a>
+						<a class="nav-link" href="home.php?console=xboxone">XBOX</a>
 					</li>
 					<li class="nav-item '.$ps4.'" id="ps4" >
-						<a class="nav-link" href="home.php?console=PS4">PS4</a>
+						<a class="nav-link" href="home.php?console=ps4">PS4</a>
 					</li>
 					<li class="nav-item '.$ps3.'" id="ps3">
-						<a class="nav-link" href="home.php?console=PS3">PS3</a>
+						<a class="nav-link" href="home.php?console=ps3">PS3</a>
 					</li>
 					<li class="nav-item '.$nintendo.'" id="nintendo">
-						<a class="nav-link" href="home.php?console=Nintendo">Nintendo</a>
+						<a class="nav-link" href="home.php?console=nintendo">Nintendo</a>
 					</li>
 				</ul>
 				<!-- PAGES -->';
@@ -84,19 +84,19 @@
 				<a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="home.php?console=PC">PC</a>
+				<a class="nav-link" href="home.php?console=switch">Switch</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="home.php?console=XBOX">XBOX</a>
+				<a class="nav-link" href="home.php?console=xboxone">XBOX</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="home.php?console=PS4">PS4</a>
+				<a class="nav-link" href="home.php?console=ps4">PS4</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="home.php?console=PS3">PS3</a>
+				<a class="nav-link" href="home.php?console=ps3">PS3</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="home.php?console=Nintendo">Nintendo</a>
+				<a class="nav-link" href="home.php?console=nintendo">Nintendo</a>
 			</li>
 		</ul>
 		<!-- Pages -->';

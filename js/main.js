@@ -39,10 +39,21 @@ function setViews(){
 
 function setListeners(){
     input_search_view.oninput = handleSearch;
-    loadFilter();
+    loadFilter(window.location.href);
 }
 
-function loadFilter (){
+function loadFilter (url){
+    var url = new URL(url);
+    var console = url.searchParams.get("console");
+    var category = url.searchParams.get("category");
+    var orderPrice = url.searchParams.get("orderPrice");
+    var orderWords = url.searchParams.get("orderWords");
+
+    game_filter.console = console;
+    game_filter.category = category;
+    game_filter.order_name = orderWords;
+    game_filter.order_price = orderPrice;
+
 
     handleFilterUpload();
 }
@@ -92,7 +103,7 @@ function handleSearch(o){
 
 function buildGamesContainer(games){
 	if(games.length == 0){
-		cont_cards.innerHTML = "Non ci sono giochi con queste caratteristiche";
+		games_container_view.innerHTML = "Non ci sono giochi con queste caratteristiche";
 		return;
 	}
 
@@ -209,12 +220,12 @@ function copyFilter(s,o){
 }
 
 //////////////////////////////////////////// UI UTILS /////////////////////////////////////
- function clearAllChild(node){
- 	while (node.hasChildNodes()) {
- 		node.removeChild(node.lastChild);
- 	}
- }
+function clearAllChild(node){
+    while (node.hasChildNodes()) {
+        node.removeChild(node.lastChild);
+    }
+}
 
- function randomIntFromInterval(min,max){
-     return Math.floor(Math.random()*(max-min+1)+min);
- }
+function randomIntFromInterval(min,max){
+    return Math.floor(Math.random()*(max-min+1)+min);
+}

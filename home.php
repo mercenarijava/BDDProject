@@ -93,19 +93,19 @@
 						<?php 
 							if(isset($_GET["console"])){
 								switch ($_GET["console"]){ 
-									case "PC": 
+									case "switch":
 										echo '<h1 id="title"><span style="color:#cd7f32;">PC</span> games</h1>';
 										break;
-									case "XBOX": 
+									case "xboxone":
 										echo '<h1 id="title"><span style="color:#1dc11d;">XBOX</span> games</h1>';
 										break;
-									case "PS4": 
+									case "ps4":
 										echo '<h1 id="title"><span style="color:#0072ce;">PS4</span> games</h1>';
 										break;
-									case "PS3": 
+									case "ps3":
 										echo '<h1 id="title"><span style="color:#02beec;">PS3</span> games</h1>';
 										break;
-									case "Nintendo": 
+									case "nintendo":
 										echo '<h1 id="title"><span style="color:#ff2c2c;">Nintendo</span> games</h1>';
 										break;
 									default:
@@ -161,31 +161,31 @@
 							}
 							if(isset($_GET["console"])){
 								switch ($_GET["console"]){ 
-									case "PC": 
+									case "switch":
 										echo '<label class="radio-container">PC
 												<input type="radio" name="console" value="pc" id="c_pc" checked>
 												<span class="checkmark"></span>
 											</label>';
 										break;
-									case "XBOX": 
+									case "xboxone":
 										echo '<label class="radio-container">XBOX
 												<input type="radio" name="console" value="xbox" id="c_xboxone" checked>
 												<span class="checkmark"></span>
 											</label>';
 										break;
-									case "PS4": 
+									case "ps4":
 										echo '<label class="radio-container">PS4
 												<input type="radio" name="console" value="ps4" id="c_ps4" checked>
 												<span class="checkmark"></span>
 											</label>';
 										break;
-									case "PS3": 
+									case "ps3":
 										echo '<label class="radio-container">PS3
 												<input type="radio" name="console" value="ps3" id="c_ps3" checked>
 												<span class="checkmark"></span>
 											</label>';
 										break;
-									case "Nintendo": 
+									case "nintendo":
 										echo '<label class="radio-container">Nintendo
 												<input type="radio" name="console" value="nintendo" id="c_nintendo" checked>
 												<span class="checkmark"></span>
@@ -253,276 +253,7 @@
 					
 					<!-- GAMES -->
 					<div class="col-sm row justify-content-center" id="cards_container">
-						<div class= "col-sm restrict">
-							<div class="header-content" href="#game">
-								<div class="game-card">
-									<div class="card-head">
-										<!-- BACKGROUND IMG -->
-									</div>
-									<div class="card-body-">
-									  <div class="product-desc">
-										<span class="product-title">
-												Battlefield 1
-												<span class="badge">
-												  New
-												</span>
-										</span>
-										<span class="product-caption">
-												Categoria
-											  </span>
-										<span class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star grey"></i>
-											  </span>
-									  </div>
-									  <div class="product-properties">
-										<span class="product-size">
-												<h4>Console</h4>
-												<ul class="ul-size">
-												  <li><a href="#"><img src="img/x360.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps3.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps4.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/nintendo.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/switch.jpg" alt=""> </a></li>
-												</ul>
-											  </span>
 
-										<button class="product-price" >
-												€<b>50,45</b>
-											  </button>
-									  </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class= "col-sm restrict">
-							<div class="header-content">
-								<div class="game-card">
-									<div class="card-head" style="background:url(img/fifa-19.jpg); background-size: cover;">
-										<!-- BACKGROUND IMG -->
-									</div>
-									<div class="card-body-">
-									  <div class="product-desc">
-										<span class="product-title">
-												Fifa 19
-												<span class="badge">
-												  New
-												</span>
-										</span>
-										<span class="product-caption">
-												Categoria
-											  </span>
-										<span class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star grey"></i>
-											  </span>
-									  </div>
-									  <div class="product-properties">
-										<span class="product-size">
-												<h4>Console</h4>
-												<ul class="ul-size">
-												  <li><a href="#"><img src="img/x360.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps3.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps4.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/nintendo.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/switch.jpg" alt=""> </a></li>
-												</ul>
-											  </span>
-
-										<button class="product-price" >
-												€<b>69,00</b>
-											  </button>
-									  </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class= "col-sm restrict">
-							<div class="header-content">
-								<div class="game-card">
-									<div class="card-head" style="background:url(img/gta_v.jpg); background-size: cover;">
-										<!-- BACKGROUND IMG -->
-									</div>
-									<div class="card-body-">
-									  <div class="product-desc">
-										<span class="product-title">
-												GTA V
-												<span class="badge">
-												  New
-												</span>
-										</span>
-										<span class="product-caption">
-												Categoria
-											  </span>
-										<span class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star grey"></i>
-											  </span>
-									  </div>
-									  <div class="product-properties">
-										<span class="product-size">
-												<h4>Console</h4>
-												<ul class="ul-size">
-												  <li><a href="#"><img src="img/x360.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps3.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps4.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/nintendo.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/switch.jpg" alt=""> </a></li>
-												</ul>
-											  </span>
-
-										<button class="product-price" >
-												€<b>39,90</b>
-											  </button>
-									  </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class= "col-sm restrict">
-							<div class="header-content" href="#game">
-								<div class="game-card">
-									<div class="card-head">
-										<!-- BACKGROUND IMG -->
-									</div>
-									<div class="card-body-">
-									  <div class="product-desc">
-										<span class="product-title">
-												Battlefield 1
-												<span class="badge">
-												  New
-												</span>
-										</span>
-										<span class="product-caption">
-												Categoria
-											  </span>
-										<span class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star grey"></i>
-											  </span>
-									  </div>
-									  <div class="product-properties">
-										<span class="product-size">
-												<h4>Console</h4>
-												<ul class="ul-size">
-												  <li><a href="#"><img src="img/x360.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps3.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps4.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/nintendo.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/switch.jpg" alt=""> </a></li>
-												</ul>
-											  </span>
-
-										<button class="product-price" >
-												€<b>50,45</b>
-											  </button>
-									  </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class= "col-sm restrict">
-							<div class="header-content">
-								<div class="game-card">
-									<div class="card-head" style="background:url(img/fifa-19.jpg); background-size: cover;">
-										<!-- BACKGROUND IMG -->
-									</div>
-									<div class="card-body-">
-									  <div class="product-desc">
-										<span class="product-title">
-												Fifa 19
-												<span class="badge">
-												  New
-												</span>
-										</span>
-										<span class="product-caption">
-												Categoria
-											  </span>
-										<span class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star grey"></i>
-											  </span>
-									  </div>
-									  <div class="product-properties">
-										<span class="product-size">
-												<h4>Console</h4>
-												<ul class="ul-size">
-												  <li><a href="#"><img src="img/x360.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps3.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps4.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/nintendo.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/switch.jpg" alt=""> </a></li>
-												</ul>
-											  </span>
-
-										<button class="product-price" >
-												€<b>69,00</b>
-											  </button>
-									  </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class= "col-sm restrict">
-							<div class="header-content">
-								<div class="game-card">
-									<div class="card-head" style="background:url(img/gta_v.jpg); background-size: cover;">
-										<!-- BACKGROUND IMG -->
-									</div>
-									<div class="card-body-">
-									  <div class="product-desc">
-										<span class="product-title">
-												GTA V
-												<span class="badge">
-												  New
-												</span>
-										</span>
-										<span class="product-caption">
-												Categoria
-											  </span>
-										<span class="product-rating">
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star"></i>
-												<i class="fa fa-star grey"></i>
-											  </span>
-									  </div>
-									  <div class="product-properties">
-										<span class="product-size">
-												<h4>Console</h4>
-												<ul class="ul-size">
-												  <li><a href="#"><img src="img/x360.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps3.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/ps4.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/nintendo.jpg" alt=""> </a></li>
-												  <li><a href="#"><img src="img/switch.jpg" alt=""> </a></li>
-												</ul>
-											  </span>
-
-										<button class="product-price" >
-												€<b>39,90</b>
-											  </button>
-									  </div>
-									</div>
-								</div>
-							</div>
-						</div>
 						
 					</div>
 					<!-- GAMES -->
