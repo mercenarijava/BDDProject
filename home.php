@@ -570,5 +570,6 @@
 		<script type="text/javascript" src="js/logo.js"></script>
 		<script type="text/javascript" src="js/blur.js"></script>
 		<script type="text/javascript" src="js/video.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 </html>
