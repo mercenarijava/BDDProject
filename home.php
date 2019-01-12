@@ -94,7 +94,7 @@
 							if(isset($_GET["console"])){
 								switch ($_GET["console"]){ 
 									case "switch":
-										echo '<h1 id="title"><span style="color:#cd7f32;">PC</span> games</h1>';
+										echo '<h1 id="title"><span style="color:#cd7f32;">Switch</span> games</h1>';
 										break;
 									case "xboxone":
 										echo '<h1 id="title"><span style="color:#1dc11d;">XBOX</span> games</h1>';
@@ -134,7 +134,7 @@
 							<?php
 							function console_filter_default(){
 								echo '
-							<label class="radio-container">PC
+							<label class="radio-container">Switch
 								<input type="radio" name="console" value="pc" id="c_pc">
 								<span class="checkmark"></span>
 							</label>
@@ -228,11 +228,11 @@
 							<h4>Ordina per:</h4>
 							<h6>Prezzo</h6>
 							<label class="radio-container">Crescente
-								<input type="radio" name="ordine" checked="checked" value=true id="c_prezzo_crescente">
+								<input type="radio" name="ordine" value=true id="c_prezzo_crescente">
 								<span class="checkmark"></span>
 							</label>
 							<label class="radio-container">Decrescente
-								<input type="radio" name="ordine" value=falso id="c_prezzo_decrescente">
+								<input type="radio" name="ordine" value=false id="c_prezzo_decrescente">
 								<span class="checkmark"></span>
 							</label>
 							<h6>Alfabetico</h6>
@@ -241,7 +241,7 @@
 								<span class="checkmark"></span>
 							</label>
 							<label class="radio-container">Z-A
-								<input type="radio" name="ordine" value=falso id="c_ZA">
+								<input type="radio" name="ordine" value=false id="c_ZA">
 								<span class="checkmark"></span>
 							</label>
 						</div>
@@ -263,19 +263,7 @@
 				<!-- PAGINATION -->
 				<nav class="mt-5 bckg-page-navigation" aria-label="Page navigation">
 					<ul id="pageStepper" class="pagination justify-content-center pt-4">
-						<li class="page-item">
-							<a class="page-link bckg-page-link" href="#shop" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-							</li>
-							<li class="page-item active"><a class="page-link bckg-page-link" href="#shop">1</a></li>
-							<li class="page-item"><a class="page-link bckg-page-link" href="#shop">2</a></li>
-							<li class="page-item"><a class="page-link bckg-page-link" href="#shop">3</a></li>
-							<li class="page-item">
-							<a class="page-link bckg-page-link" href="#shop" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
+
 					</ul>
 				</nav>
 				<!-- PAGINATION -->

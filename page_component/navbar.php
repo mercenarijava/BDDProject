@@ -170,34 +170,11 @@
 				'<!-- ShoppingChart -->
 				<li class="nav-item dropdown dropdown-visible" onClick="window.location.href='.$href.'">
 					<a class="nav-link" data-target="#ShoppingChart" href="#shopping-cart.php" id="shopping-cart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span id="cart-items">2</span>
+
 					</a>
 					<div class="dropdown-menu dropdown-account dropdown-shop" aria-labelledby="shopping-cart">
-						<div class="row mx-0 my-3">
-							<span class="col-8">Call of Duty</span>
-							<span class="col-2">
-								<span style = "font-size:14px">x</span>
-								<span class="font-weight-bold">1</span>
-							</span>
-							<span class="col-2">
-								<object data="icon/delete.svg" type="image/svg+xml" id="shopDelete1">
-									X
-								</object>
-							</span>
-						</div>
-						<div class="row mx-0 my-3">
-							<span class="col-8">Fortnite</span>
-							<span class="col-2">
-								<span style = "font-size:14px">x</span>
-								<span class="font-weight-bold">1</span>
-							</span>
-							<span class="col-2">
-								<object data="icon/delete.svg" type="image/svg+xml" id="shopDelete2">
-									X
-								</object>
-							</span>
-						</div>
-						<div class="row mx-0 my-3">
+
+						<div id="viewChartButton" class="row mx-0 my-3">
 							<div class="col">
 								<a class = "btn viewShop" href="shopping-cart.php">View cart</a>
 							</div>
