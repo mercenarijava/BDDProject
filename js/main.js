@@ -372,7 +372,7 @@ function buildGameCard(game){
     var gamePrice = document.createElement("BUTTON");
     gamePrice.className ="product-price";
     gamePrice.innerHTML = "€";
-    gamePrice.name = JSON.stringify(row);
+    gamePrice.name = JSON.stringify(game);
     gamePrice.onclick = handleBuyGame;
 
     gameCardProperties.appendChild(gamePrice);
