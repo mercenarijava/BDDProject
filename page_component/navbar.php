@@ -172,8 +172,7 @@
 					<a class="nav-link" data-target="#ShoppingChart" href="#shopping-cart.php" id="shopping-cart" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
 					</a>
-					<div class="dropdown-menu dropdown-account dropdown-shop" aria-labelledby="shopping-cart">
-
+					<div id="chart_container" class="dropdown-menu dropdown-account dropdown-shop" aria-labelledby="shopping-cart">
 						<div id="viewChartButton" class="row mx-0 my-3">
 							<div class="col">
 								<a class = "btn viewShop" href="shopping-cart.php">View cart</a>

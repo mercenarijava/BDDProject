@@ -39,48 +39,14 @@
 					</p>
 				</div>
 				<form method="POST" class="bckg-form content-form content-orders shopping-cart" action="php/buy.php">
-					<div class="row boder-bottom align-items-center py-5">
-						<div class="col-sm-7">
-							<img src="img/call-of-duty-mw2-cover.jpg" alt="" height="150" width="120" class="mr-3">
-							<span class="font-weight">Call of duty</span>
-						</div>
-						<div class="col-sm-2 text-right">
-							<input type="number" min="01" max="20" class="form-input num-items" maxlength="2" name="num-game-1" id="num-game-1" placeholder="1" required="" value="1">
-						</div>
-						<div class="col-sm-2 text-right">
-							<span class="font-weight">50,00€</span>
-						</div>
-						<div class="col-sm-1 text-right">
-							<object data="icon/delete.svg" type="image/svg+xml" height="25" width="25" id="delete1">
-								X
-							</object>
-						</div>
-					</div>
-					<div class="row boder-bottom align-items-center py-5">
-						<div class="col-sm-7">
-							<img src="img/fortnite.jpg" alt="" height="150" width="120" class="mr-3">
-							<span class="font-weight">Fortnite</span>
-						</div>
-						<div class="col-sm-2 text-right">
-							<input type="number" min="01" max="20" class="form-input num-items" maxlength="2" name="num-game-2" id="num-game-2" placeholder="1" required="" value="1">
-						</div>
-						<div class="col-sm-2 text-right">
-							<span class="font-weight">30,00€</span>
-						</div>
-						<div class="col-sm-1 text-right">
-							<object data="icon/delete.svg" type="image/svg+xml" height="25" width="25" id="delete2">
-								X
-							</object>
-						</div>
-					</div>
 					
-					<div class="row justify-content-end align-items-center">
+					<div id="info_buy" class="row justify-content-end align-items-center">
 						<div class="col-4  boder-bottom py-5">
 							<li>Subtotal</li>
 							<li>Shipping</li>
 						</div>
 						<div class="col-4 boder-bottom py-5 text-right">
-							<li>80,00€</li>
+							<li id="subtotal" >0,00€</li>
 							<li>FREE</li>
 						</div>
 					</div>
@@ -89,11 +55,11 @@
 							<li>Total</li>
 						</div>
 						<div class="col-4 text-right">
-							<li id="total">80,00€</li>
+							<li id="total">0,00€</li>
 						</div>
 					</div>
 					<div class="row justify-content-end align-items-center py-5">
-						<input type="submit" name="buy" id="buy" class="form-submit col-3 btn-buy" value="BUY">
+						<input type="button" name="buy" id="buy" class="form-submit col-3 btn-buy" value="BUY">
 					</div>
 				</form>
 			</div>
@@ -117,5 +83,6 @@
 		<script type="text/javascript" src="js/logo.js"></script>
 		<script src="js/password-hide.js"></script>
 		<script type="text/javascript" src="js/blur.js"></script>
+		<script src="js/shoppingCart.js"></script>
 	</body>
 </html>

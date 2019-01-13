@@ -49,7 +49,7 @@ class game_filter{
 // SQL OPERATIONS
 $sql_login = "SELECT * FROM users WHERE username = '%s' AND password = '%s'";
 $sql_signin = "INSERT INTO `users`(`name`, `surname`, `address`, `phone`, `username`, `password`) VALUES ('%s','%s','%s',%d,'%s','%s')";
-$sql_get_games = "SELECT g.id AS game_id, g.title AS game_title, g.category AS game_category, g.price AS game_price, g.logo AS game_logo, g.description AS game_description, c.id AS console_id, c.name AS console_name, c.model AS console_model FROM (games g INNER JOIN games_console gc ON g.id = id_game) INNER JOIN console c ON gc.id_console = c.id %s %s LIMIT 999 OFFSET %d";
+$sql_get_games = "SELECT g.id AS game_id, g.title AS game_title, g.category AS game_category, g.price AS game_price, g.free_quantity AS game_quantity, g.logo AS game_logo, g.description AS game_description, c.id AS console_id, c.name AS console_name, c.model AS console_model FROM (games g INNER JOIN games_console gc ON g.id = id_game) INNER JOIN console c ON gc.id_console = c.id %s %s LIMIT 999 OFFSET %d";
 $slq_delete_orders = "DELETE FROM `orders` WHERE id_game = %d AND username_user = '%s' AND payment_type = %d ";
 $sql_get_info_user = "SELECT * FROM users WHERE username = '%s'";
 $sql_modify_email = "UPDATE users SET username = '%s' WHERE username = '%s'";
@@ -100,24 +100,21 @@ function signin($name, $surname, $address, $phone, $username, $pass){
 }
 
 function getGames($filterGet){
-	$where = $filterGet->hasCategorySelected() || $filterGet->hasConsoleSelected() || $filterGet->hasTitle() ? 'WHERE ' : '';
+	$where = ' WHERE g.free_quantity>0 ';
 	if($filterGet->hasCategorySelected()){
+		$where .= ' AND ';
 		$where .= "g.category = '";
 		$where .= $filterGet->category;
 		$where .= "'";
 	}
 	if($filterGet->hasConsoleSelected()){
-		if($filterGet->hasCategorySelected()){
-			$where .= ' AND ';
-		}
+		$where .= ' AND ';
 		$where .= "c.model = '";
 		$where .= $filterGet->console;
 		$where .= "'";
 	}
 	if($filterGet->hasTitle()){
-		if($filterGet->hasConsoleSelected() || $filterGet->hasCategorySelected()){
-			$where .= ' AND ';
-		}
+		$where .= ' AND ';
 		$where .= "g.title LIKE '%";
 		$where .= $filterGet->title;
 		$where .= "%'";

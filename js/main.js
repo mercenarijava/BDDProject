@@ -35,6 +35,8 @@ var ifZA;
 var button_load_filter;
 
 var pageStepper;
+var chartContainer;
+var chartNumberContainer;
 var viewChartButton;
 
 var chart = new Array();
@@ -92,11 +94,14 @@ function setViews(){
     ifZA = document.getElementById("c_ZA");
 
     pageStepper = document.getElementById("pageStepper");
+    chartNumberContainer = document.getElementById("shopping-cart");
+    chartContainer = document.getElementById("chart_container");
     viewChartButton = document.getElementById("viewChartButton");
 }
 
 function setListeners(){
-    loadSessionChart();
+    chart = loadSessionChart();
+    reloadChartNumber();
     input_search_view.oninput = handleSearch;
     button_load_filter.onclick = updateFilter;
     loadFilter(window.location.href);
@@ -433,19 +438,60 @@ function handleBuyGame(e){
 
     chart.push(gameJson);
     buildChartRow(gameJson);
+    reloadChartNumber();
     updateSessionChart();
 }
 
+function reloadChartNumber(){
+    clearAllChild(chartNumberContainer);
+    var cN = document.createElement("SPAN");
+    cN.id = "cart-items";
+    cN.innerHTML = "" + chart.length;
+    chartNumberContainer.appendChild(cN);
+}
+
 function buildChartRow(game){
-    // TODO
+    var row = document.createElement("DIV");
+    row.className = "row mx-0 my-3";
+    viewChartButton.prepend(row);
+
+    var rowTitle = document.createElement("SPAN");
+    rowTitle.className = "col-12";
+    rowTitle.innerHTML = game.game_title + "<br>" + game.console_name;
+    row.appendChild(rowTitle);
+
+    var rowQuantity = document.createElement("SPAN");
+    rowQuantity.className = "col-2";
+    rowQuantity.style = "font-size:14px;";
+    rowQuantity.innerHTML = "x1";
+    row.appendChild(rowQuantity);
+
+    var rowDelete = document.createElement("OBJECT");
+    rowDelete.type = "image/svg+xml";
+    rowDelete.data = "icon/delete.svg";
+    rowDelete.innerHTML = "X";
+    rowDelete.onclick = function (e){
+			chart.splice(chart.indexOf(game), 1);
+            chartContainer.removeChild(row);
+            reloadChartNumber();
+            updateSessionChart();
+    };
+    row.appendChild(rowDelete);
 }
 
 function updateSessionChart(){
-    // TODO
+    sessionStorage.setItem("chart", JSON.stringify(chart));
 }
 
 function loadSessionChart(){
-    return new Array(); // TODO
+    if(sessionStorage.getItem("chart") != null){
+        var arr = JSON.parse(sessionStorage.getItem("chart"));
+        for(i = 0; i<arr.length; i++){
+            buildChartRow(arr[i]);
+        }
+        return arr;
+    }
+    return new Array();
 }
 
 function isAlreadyInChart(g){
