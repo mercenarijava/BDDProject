@@ -113,12 +113,12 @@ function buildRow(game){
     div5.className = "col-sm-1 text-right";
     div1.appendChild(div5);
 
-    var rowDelete = document.createElement("OBJECT");
+    var rowDelete = document.createElement("DIV");
     rowDelete.type = "image/svg+xml";
     rowDelete.data = "icon/delete.svg";
-    rowDelete.id="delete2";
     rowDelete.style="height:25px;width:25px;"
     rowDelete.innerHTML = "X";
+    rowDelete.name = JSON.stringify(game);
     rowDelete.onclick = handleRemoveItem;
     div5.appendChild(rowDelete);
 
@@ -126,8 +126,11 @@ function buildRow(game){
     ordersContainer.prepend(div1);
 }
 
-function handleRemoveItem(){
-    alert(a);
+function handleRemoveItem(e){
+	chart.splice(chart.indexOf(JSON.parse(e.target.name)), 1);
+    ordersContainer.removeChild(e.target.parentNode.parentNode);
+    setSubTotalAndTotal();
+    updateSessionChart();
 }
 
 function handlerOnInput(e){
@@ -142,6 +145,10 @@ function setSubTotalAndTotal (){
     }
     totalView.innerHTML = total + "€";
     subTotalView.innerHTML = total + "€";
+}
+
+function updateSessionChart(){
+    sessionStorage.setItem("chart", JSON.stringify(chart));
 }
 
 function loadSessionChart(){

@@ -38,7 +38,7 @@
 						Free delivery and free returns.
 					</p>
 				</div>
-				<form id="orders_layout" method="POST" class="bckg-form content-form content-orders shopping-cart" action="php/buy.php">
+				<div id="orders_layout" class="bckg-form content-form content-orders shopping-cart">
 
 
 					<div id="info_buy" class="row justify-content-end align-items-center">
@@ -62,7 +62,7 @@
 					<div class="row justify-content-end align-items-center py-5">
 						<input type="button" name="buy" id="buy" class="form-submit col-3 btn-buy" value="BUY">
 					</div>
-				</form>
+				</div>
 			</div>
 		</section>
 		<!-- Shopping cart -->
