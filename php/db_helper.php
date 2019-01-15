@@ -52,9 +52,13 @@ $sql_signin = "INSERT INTO `users`(`name`, `surname`, `address`, `phone`, `usern
 $sql_get_games = "SELECT g.id AS game_id, g.title AS game_title, g.category AS game_category, g.price AS game_price, g.free_quantity AS game_quantity, g.logo AS game_logo, g.description AS game_description, c.id AS console_id, c.name AS console_name, c.model AS console_model FROM (games g INNER JOIN games_console gc ON g.id = id_game) INNER JOIN console c ON gc.id_console = c.id %s %s LIMIT 999 OFFSET %d";
 $slq_delete_orders = "DELETE FROM `orders` WHERE id_game = %d AND username_user = '%s' AND payment_type = %d ";
 $sql_get_info_user = "SELECT * FROM users WHERE username = '%s'";
+$sql_payment_type_of_user = "SELECT * FROM payments_types WHERE owner = '%s'";
 $sql_modify_email = "UPDATE users SET username = '%s' WHERE username = '%s'";
 $sql_modify_account = "UPDATE users SET username = '%s', password = '%s' WHERE username = '%s'";
 $sql_modify_personal_info = "UPDATE users SET name = '%s', surname = '%s', address = '%s', phone = '%s' WHERE username = '%s'";
+$sql_insert_order = "INSERT INTO orders (username_user, id_game, payment_type, quantity, console) VALUES ('%s', %d, %d, %d, %d) ";
+$sql_update_game_quantity = "UPDATE games SET free_quantity = %d WHERE id = %d ";
+
 
 function connect(){
 	// Create connection
@@ -139,6 +143,22 @@ function getGames($filterGet){
 
 function deleteOrder($username, $id_game, $payment_type){
 	$sql = sprintf($GLOBALS['slq_delete_orders'], $id_game, $username, $payment_type);
+	$result = $GLOBALS['connection']->query($sql);
+}
+
+function getPaymentTypeOfUser($username){
+	$sql = sprintf($GLOBALS['sql_payment_type_of_user'], $username);
+	$result = $GLOBALS['connection']->query($sql);
+	return $result;
+}
+
+function updateGameQuantity($gameId, $quantity){
+	$sql = sprintf($GLOBALS['sql_update_game_quantity'], $quantity, $gameId);
+	$result = $GLOBALS['connection']->query($sql);
+}
+
+function insertOrder($username, $gameId, $paymentTypeId, $quantity, $consoleId){
+	$sql = sprintf($GLOBALS['sql_insert_order'], $username, $gameId, $paymentTypeId, $quantity, $consoleId);
 	$result = $GLOBALS['connection']->query($sql);
 }
 

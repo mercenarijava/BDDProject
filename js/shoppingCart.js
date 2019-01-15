@@ -6,6 +6,7 @@ window.onload = function(){
 var subTotalView;
 var totalView;
 
+var ordersContainer;
 var infoView;
 var buyButton;
 
@@ -16,11 +17,42 @@ function connectViews(){
     totalView = document.getElementById("total");
     infoView = document.getElementById("info_buy");
     buyButton = document.getElementById("buy");
+    ordersContainer = document.getElementById("orders_layout");
 }
 
 function connectListeners(){
     chart = loadSessionChart();
     buildUI();
+
+   buyButton.onclick = buyGames;
+}
+
+function buyGames (){
+    if(chart.length == 0) return;
+
+
+	jQuery.ajax({
+		url: 'php/buy.php',
+		type: "POST",
+		data: {"games" : JSON.stringify(chart)},
+		success: function(data) {
+		    if(data == "e1"){
+		        // manage payment type not setted
+		        alert("Payment type not set");
+		        return;
+		    }
+		    var success = data == "s1";
+
+		    if(success){
+                emptyChart();
+		    }
+		    window.location.href = "buy.php?buy=" + (success? "success" : "failed");
+		}
+	});
+}
+
+function emptyChart(){
+    sessionStorage.setItem("chart", JSON.stringify(new Array()));
 }
 
 function buildUI(){
@@ -35,7 +67,6 @@ function buildUI(){
 function buildRow(game){
     var div1 = document.createElement("DIV");
     div1.className = "row boder-bottom align-items-center py-5";
-    infoView.prepend(div1);
 
     var div2 = document.createElement("DIV");
     div2.className = "col-sm-7";
@@ -64,6 +95,8 @@ function buildRow(game){
     input.placeholder = "1";
     input.value = 1;
     input.className = "form-input num-items";
+    input.onchange = handlerOnInput;
+    input.name = chart.indexOf(game);
     div3.appendChild(input);
 
 
@@ -86,15 +119,26 @@ function buildRow(game){
     rowDelete.id="delete2";
     rowDelete.style="height:25px;width:25px;"
     rowDelete.innerHTML = "X";
+    rowDelete.onclick = handleRemoveItem;
     div5.appendChild(rowDelete);
 
 
+    ordersContainer.prepend(div1);
+}
+
+function handleRemoveItem(){
+    alert(a);
+}
+
+function handlerOnInput(e){
+    chart[parseInt(e.target.name)].buyQuantity = e.target.value;
+    setSubTotalAndTotal();
 }
 
 function setSubTotalAndTotal (){
     var total = 0.00;
     for(i = 0; i < chart.length; i++){
-        total += parseInt(chart[i].game_price);
+        total += parseInt(chart[i].game_price) * parseInt(chart[i].buyQuantity);
     }
     totalView.innerHTML = total + "€";
     subTotalView.innerHTML = total + "€";

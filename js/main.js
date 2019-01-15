@@ -313,6 +313,7 @@ function buildGamesContainer(games){
 	}
 
 	for(var i = 0; i < games.length; i++){
+	    games[i].buyQuantity = 1;
 	    games_container_view.appendChild(buildGameCard(games[i]));
 	}
 }
@@ -466,6 +467,7 @@ function buildChartRow(game){
     rowQuantity.innerHTML = "x1";
     row.appendChild(rowQuantity);
 
+/*
     var rowDelete = document.createElement("OBJECT");
     rowDelete.type = "image/svg+xml";
     rowDelete.data = "icon/delete.svg";
@@ -477,6 +479,7 @@ function buildChartRow(game){
             updateSessionChart();
     };
     row.appendChild(rowDelete);
+    */
 }
 
 function updateSessionChart(){

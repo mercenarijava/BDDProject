@@ -33,47 +33,7 @@
 			</div>
 			<div class="header-overlay">
 				<div class="header-content">
-					<div class="game-card">
-						<div class="card-head">
-							<!-- BACKGROUND IMG -->
-						</div>
-						<div class="card-body-">
-						  <div class="product-desc">
-							<span class="product-title">
-									Battlefield 1
-									<span class="badge">
-									  New
-									</span>
-							</span>
-							<span class="product-caption">
-									Categoria
-								  </span>
-							<span class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star grey"></i>
-								  </span>
-						  </div>
-						  <div class="product-properties">
-							<span class="product-size">
-									<h4>Console</h4>
-									<ul class="ul-size">
-									  <li><a href="#"><img src="img/x360.jpg" alt=""> </a></li>
-									  <li><a href="#"><img src="img/ps3.jpg" alt=""> </a></li>
-									  <li><a href="#"><img src="img/ps4.jpg" alt=""> </a></li>
-									  <li><a href="#"><img src="img/nintendo.jpg" alt=""> </a></li>
-									  <li><a href="#"><img src="img/switch.jpg" alt=""> </a></li>
-									</ul>
-								  </span>
 
-							<button class="product-price" >
-									€<b>50,45</b>
-								  </button>
-						  </div>
-						</div>
-					</div>
 				</div>
 			</div>
 			<a class="btn arrow-icon" data-target="#shop">
@@ -135,11 +95,11 @@
 							function console_filter_default(){
 								echo '
 							<label class="radio-container">Switch
-								<input type="radio" name="console" value="pc" id="c_pc">
+								<input type="radio" name="console" value="switch" id="c_pc">
 								<span class="checkmark"></span>
 							</label>
 							<label class="radio-container">XBOX
-								<input type="radio" name="console" value="xbox" id="c_xboxone">
+								<input type="radio" name="console" value="xboxone" id="c_xboxone">
 								<span class="checkmark"></span>
 							</label>
 							<label class="radio-container">PS4
@@ -162,14 +122,14 @@
 							if(isset($_GET["console"])){
 								switch ($_GET["console"]){ 
 									case "switch":
-										echo '<label class="radio-container">PC
-												<input type="radio" name="console" value="pc" id="c_pc" checked>
+										echo '<label class="radio-container">Switch
+												<input type="radio" name="console" value="switch" id="c_pc" checked>
 												<span class="checkmark"></span>
 											</label>';
 										break;
 									case "xboxone":
 										echo '<label class="radio-container">XBOX
-												<input type="radio" name="console" value="xbox" id="c_xboxone" checked>
+												<input type="radio" name="console" value="xboxone" id="c_xboxone" checked>
 												<span class="checkmark"></span>
 											</label>';
 										break;

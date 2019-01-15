@@ -38,8 +38,9 @@
 						Free delivery and free returns.
 					</p>
 				</div>
-				<form method="POST" class="bckg-form content-form content-orders shopping-cart" action="php/buy.php">
-					
+				<form id="orders_layout" method="POST" class="bckg-form content-form content-orders shopping-cart" action="php/buy.php">
+
+
 					<div id="info_buy" class="row justify-content-end align-items-center">
 						<div class="col-4  boder-bottom py-5">
 							<li>Subtotal</li>
