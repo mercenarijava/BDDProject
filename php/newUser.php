@@ -1,22 +1,28 @@
 <?php
 
-include "db_helper.php";
+	include 'db_helper.php';
+	include 'session.php';
 
 //set var
+connect();
 $nome = $_GET['nome'];
 $cognome = $_GET['cognome'];
 $username = $_GET['usern'];
 $indirizzo = $_GET['indirizzo'];
-$citta = $_GET['citta'];
-$cap = $_GET['cap'];
 $cell = $_GET['cell'];
-$piva = $_GET['piva'];
-$email = $_GET['mail'];
 $pwd = $_GET['pwd'];
 
-connect();
-$sql = "INSERT INTO users (name,surname,city,address,cap,piva,email,phone,username,password) VALUES ('$nome','$cognome','$citta',
-'$indirizzo','$cap','$piva','$email','$cell','$username','$pwd')";
+//control if there is an user with the same name
+$sql = "SELECT * FROM users WHERE username='$username'";
 $result = $GLOBALS['connection']->query($sql);
-disconnect();
+if ($result->num_rows > 0) {
+    $sql = "UPDATE users SET name='$nome',surname='$cognome',address='$indirizzo',phone='$cell',password='$pwd' WHERE username='$username'";
+    $result = $GLOBALS['connection']->query($sql);
+}
+//insert the new user
+else{
+    $sql = "INSERT INTO users (name,surname,address,phone,username,password) VALUES ('$nome','$cognome','$indirizzo','$cell','$username','$pwd')";
+    $result = $GLOBALS['connection']->query($sql);
+    disconnect();
+}
 ?>

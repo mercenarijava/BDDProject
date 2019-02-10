@@ -19,14 +19,9 @@
 	
 	connect();
 	$games = getGames($g_filter);
-	$rows = array();
-	$count = 0;
-	while(($r = mysqli_fetch_assoc($games)) && $count < $g_filter->size) {
-		$rows[] = $r;
-		$count ++;
-	}
-	
-	echo $games->num_rows;
-	print json_encode($rows);
+	$totalSize = sizeof($games);
+
+	echo $totalSize;
+	print json_encode(array_slice($games, 0, $g_filter->size));
 	disconnect();
 ?>

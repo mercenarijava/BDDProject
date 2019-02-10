@@ -1,10 +1,22 @@
 //variabili users
-var nome,cognome,usern,indirizzo,citta,cap,cell,piva,mail,pwd,textUser;
+var nome,cognome,usern,indirizzo,cell,pwd,textUser;
 var is_new_user = false;
 //variabili Products
 var nomeP,descrizione,categoria,consoleP,prezzo,quantita,img,id_prodotto;
 var is_new_product = false;
 
+
+  function selectChanged(valore){
+    var obj = JSON.parse(Get("php/refreshValue.php?id_prodotto="+id_prodotto+"&console="+valore.value));
+    if(obj!=''){
+      document.getElementById('quantita').value=obj.free_quantity;
+      document.getElementById('prezzo').value=obj.price;
+    }
+    else{
+      document.getElementById('quantita').value="";
+      document.getElementById('prezzo').value="";
+    }
+  }
 
   function tableThread(){
     setInterval("initTableConsole()",1000);
@@ -49,11 +61,7 @@ var is_new_product = false;
       document.getElementById('cognome').value=json_obj.surname; cognome = json_obj.name;
       document.getElementById('username').value=json_obj.username; username = json_obj.name;
       document.getElementById('indirizzo').value=json_obj.address;  indirizzo = json_obj.name;
-      document.getElementById('citta').value=json_obj.city; citta = json_obj.name;
-      document.getElementById('cap').value=json_obj.cap; cap = json_obj.name;
       document.getElementById('cell').value=json_obj.phone; cell = json_obj.name;
-      document.getElementById('piva').value=json_obj.piva; piva = json_obj.name;
-      document.getElementById('mail').value=json_obj.email; mail = json_obj.name;
       document.getElementById('pwd').value=json_obj.password; pwd = json_obj.name;
       contentUser.style.display = "block";
       document.getElementById('button_elimina_utente').style.display="block";
@@ -65,11 +73,7 @@ var is_new_product = false;
         document.getElementById('cognome').value="";
         document.getElementById('username').value=""+textUser;
         document.getElementById('indirizzo').value="";
-        document.getElementById('citta').value="";
-        document.getElementById('cap').value="";
         document.getElementById('cell').value="";
-        document.getElementById('piva').value="";
-        document.getElementById('mail').value="";
         document.getElementById('pwd').value="";
         contentUser.style.display = "block";
         document.getElementById('button_elimina_utente').style.display="none";
@@ -85,7 +89,7 @@ var is_new_product = false;
     var select = document.getElementById("inputGroupSelect01");
     removeOptions(select); //remove old option and create new option
     if(json_obj!=""){
-      var consoleG = JSON.parse(Get("getAssociatedConsole.php?info="+textProduct));
+      var consoleG = JSON.parse(Get("php/getAssociatedConsole.php?info=*"));
       for(var i = 0 ; i<consoleG.length ; i++){
         var elem = document.createElement("option");
         elem.text = consoleG[i].name;
@@ -161,16 +165,11 @@ var is_new_product = false;
       cognome=document.getElementById('cognome').value;
       usern=document.getElementById('username').value;
       indirizzo=document.getElementById('indirizzo').value;
-      citta=document.getElementById('citta').value;
-      cap=document.getElementById('cap').value;
       cell=document.getElementById('cell').value;
-      piva=document.getElementById('piva').value;
-      mail=document.getElementById('mail').value;
       pwd=document.getElementById('pwd').value;
       if(controlledOkUser()){
         var url = "?nome="+nome+"&cognome="+cognome+"&usern="+usern+
-        "&indirizzo="+indirizzo+"&citta="+citta+"&cap="+cap+"&cell="+
-        cell+"&piva="+piva+"&mail="+mail+"&pwd="+pwd;
+        "&indirizzo="+indirizzo+"&cell="+cell+"&pwd="+pwd;
         if(is_new_user){
           var Httpreq = new XMLHttpRequest();
           Httpreq.open("GET","php/newUser.php"+url,false);
@@ -245,14 +244,13 @@ var is_new_product = false;
       var nome_input = document.getElementById('nome');
       var cognome_input = document.getElementById('cognome');
       var usern_input = document.getElementById('username');
-      var mail_input = document.getElementById('mail');
       var pwd_input = document.getElementById('pwd');
+      var verify_email = validateEmail(usern);
       if(nome != "" && cognome != "" &&
-      usern != "" && mail != "" && pwd != ""){
+      usern != "" && pwd != "" && verify_email){
         nome_input.style.borderColor = '#000000';
         cognome_input.style.borderColor = '#000000';
         usern_input.style.borderColor = '#000000';
-        mail_input.style.borderColor = '#000000';
         pwd_input.style.borderColor = '#000000';
         return true;
       }
@@ -269,18 +267,12 @@ var is_new_product = false;
         }if(cognome != ""){
             cognome_input.style.border='solid';
             cognome_input.style.borderColor = '#000000';
-        }if(usern == ""){
+        }if(usern == "" || !verify_email){
             usern_input.style.border='solid';
             usern_input.style.borderColor = '#e52213';
-        }if(usern != ""){
+        }if(usern != "" && verify_email){
             usern_input.style.border='solid';
             usern_input.style.borderColor = '#000000';
-        }if(mail == ""){
-            mail_input.style.border='solid';
-            mail_input.style.borderColor = '#e52213';
-        }if(mail != ""){
-            mail_input.style.border='solid';
-            mail_input.style.borderColor = '#000000';
         }if(pwd == ""){
             pwd_input.style.border='solid';
             pwd_input.style.borderColor = '#e52213';
@@ -322,4 +314,9 @@ var is_new_product = false;
         quantita_input.style.borderColor = '#000000';
       }return false;
     }
+  }
+
+  function validateEmail(email){
+    var re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
+    return re.test(email);
   }

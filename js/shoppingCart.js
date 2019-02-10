@@ -39,7 +39,8 @@ function buyGames (){
 		    if(data == "e1"){
 		        // manage payment type not setted
 		        alert("Payment type not set");
-		        return;
+		        window.location.href = "settings.php";
+				return false;
 		    }
 		    var success = data == "s1";
 
@@ -80,7 +81,7 @@ function buildRow(game){
 
     var span1 = document.createElement("SPAN");
     span1.className = "font-weight";
-    span1.innerHTML = game.game_title;
+    span1.innerHTML = game.game_title+" "+game.console_name;
     div2.appendChild(span1);
 
     var div3 = document.createElement("DIV");

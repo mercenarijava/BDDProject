@@ -335,7 +335,7 @@ function buildGameCard(game){
 
 	var gameCardHeader = document.createElement("DIV");
 	gameCardHeader.className = "card-head";
-	gameCardHeader.style = "background:url("+ game.game_logo +"); background-size: cover;";
+	gameCardHeader.style = "background:url("+ game.game_logo +") no-repeat center; background-size: cover;";
 
 	var gameCardBody = document.createElement("DIV");
 	gameCardBody.className = "card-body-";

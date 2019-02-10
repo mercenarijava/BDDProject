@@ -2,9 +2,9 @@
 
 include "db_helper.php";
 
+connect();
 $username = $_GET['info'];
 
-connect();
 $sql = "DELETE FROM users WHERE username = '$username'";
 $result = $GLOBALS['connection']->query($sql);
 disconnect();

@@ -140,6 +140,8 @@
 						<a class="dropdown-item" href="settings.php">Impostazioni</a>
 						'.(($_SESSION["email"] == "admin@blockgame.com")
 						?'
+						<a class="dropdown-item" href="videogames.php">Videogames list</a>
+						<a class="dropdown-item" href="users.php">Users list</a>
 						<a class="dropdown-item" href="admin.php">Admin</a>
 						':''
 						).'

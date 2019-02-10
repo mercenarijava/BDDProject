@@ -1,5 +1,6 @@
 <?php 
 	include 'php/session.php';								/* IMPORTANT DON'T DELETE */
+	include 'php/db_helper.php';								/* IMPORTANT DON'T DELETE */
 	include 'page_component/navbar.php';					/* IMPORTANT DON'T DELETE */
 	include 'page_component/footer.php';					/* IMPORTANT DON'T DELETE */
 	
@@ -34,69 +35,143 @@
 		<section class="general-form">
 			<div class = "container">
 				<div class = "title-page">
-					<h1>My orders</h1>
-					<p>
-						Here you find all your orders.
-					</p>
+					<?php
+						if($_SESSION['email'] == "admin@blockgame.com"){
+							echo 	"<h1>Orders</h1>
+									<p>
+										Search, modify, delete orders.
+									</p>";
+						}else{
+							echo 	"<h1>My orders</h1>
+									<p>
+										Here you find all your orders.
+									</p>
+									<p id='demo'></p>";
+						}
+					?>
 				</div>
 				<div class = "bckg-form content-form content-orders bckg-settings-content">
 					<div class="bckg-table table-striped">
-						<div class="row bckg-table-thead font-weight-bold">
-							<div class="col-3">
-								<span>Date</span>
-							</div>
-							<div class="col-5">
-								<span>Game</span>
-							</div>
-							<div class="col-2 text-right">
-								<span>n°</span>
-							</div>
-							<div class="col-2 text-right">
-								<span>Price</span>
-							</div>
+						<div class="bckg-table-body option" style="padding:0px">
+							<?php
+								connect();
+								
+								if($_SESSION['email'] == "admin@blockgame.com"){
+									$allOrders = getOrders();
+									echo	"<div class='settings-form bckg-form row'>
+												<div class='col'>
+													<input type='button' name='addOrder' id='addOrder' class='form-submit settings-btn' value='Inserisci Ordine' data-toggle='modal' data-target='#addOrderModal' style='position:relative; right:0px; width:unset;'/>
+												</div>
+												<div class='col' align='right'>
+													<input class='form-control bckg-input-search' type='search' placeholder='Search...' id='orderSearch' style='position:relative; background-color: #ffffff; border: 1px solid;'  onkeyup='filterOrders();'>
+												</div>
+											</div>";
+									
+								}
+								else{
+									$allOrders = getOrdersByUsername($_SESSION['email']);
+									echo	"<div class='settings-form bckg-form row'>
+												<div class='col' align='right'>
+													<input class='form-control bckg-input-search' type='search' placeholder='Search...' id='orderSearch' style='position:relative; background-color: #ffffff; border: 1px solid;'  onkeyup='filterOrders();'>
+												</div>
+											</div>";
+								}
+						?>
 						</div>
 						<div class="bckg-table-body option">
-							<div class="bckg-row row py-2" onmouseover="blurElements('info1'); showSingleElem('delete1');" onmouseout="notBlurElements('info1'); hideSingleElem('delete1')">
-								<div class="row align-items-center mx-0" id="info1" style="width:100%">
-									<div class="col-3">
-										<span scope="row">17/12/2018</span>
-									</div>
-									<div class="col-5">
-										<img src="img/call-of-duty-mw2-cover.jpg" alt="" height="90" width="70" class="mr-3">
-										<span>Call of duty</span>
-									</div>
-									<div class="col-2 text-right">
-										<span style="font-size:10px">x</span>
-										<span id="quantity" class="font-weight-bold">1</span>
-									</div>
-									<div class="col-2 text-right">
-										<span>50€</span>
-									</div>
+						<?php
+								
+								$exists = mysqli_num_rows($allOrders) > 0;
+								if($exists == 0){
+									echo "<h5 class='row'>Nessun ordine presente,<a href='home.php#shop' class='px-2'>Go to Shop...</a></h5>";
+								}
+								
+								while($order = mysqli_fetch_array($allOrders)) { 
+									$info = '"info'.$order['id'].'"';
+									$delete = '"delete'.$order['id'].'"';
+									$modify = '"modify'.$order['id'].'"';
+									$link = '"modifyOrder.php?orderId='.$order['id'].'"';
+									$username ='';
+									
+									if($_SESSION['email'] == "admin@blockgame.com"){
+										$username = "<span class='col' style='text-align: -webkit-center;'>".$order['username_user']."</span>";
+										echo 	"<div class='order bckg-row row py-2 my-4' onmouseover='blurElements(".$info."); show(".$modify.",".$delete.");' onmouseout='notBlurElements(".$info."); hide(".$modify.",".$delete.")' style='background-color: #ebebeb;'>";
+									}
+									else{
+										echo 	"<div  class='order bckg-row row py-2 my-4' onmouseover='blurElements(".$info."); showSingleElem(".$delete.");' onmouseout='notBlurElements(".$info."); hideSingleElem(".$delete.")' style='background-color: #ebebeb;'>";
+									}
+									
+									echo 		"<div id=".$info." name='info' style='width:100%'>
+													<div class='row mx-0 py-2'>
+														<span class='col' class='date'>Date: ".$order['date']."</span>
+														".$username."
+														<span class='col' class='order_id' style='text-align: -webkit-right;'>order_id: ".$order['id']."</span>
+														<hr style='border: 1px solid #000; width: 100%;'>
+													</div>";
+									$allContents = getContentsByOrderId($order['id']);
+									while($contents = mysqli_fetch_array($allContents)){
+											echo	"<div class='row align-items-center mx-0 py-2' style='width:100%'>
+														<div class='col-3'>
+															<span scope='row'>".$contents['CONSOLE']."</span>
+														</div>
+														<div class='col-5'>
+															<img src='".$contents['LOGO']."' alt='' height='90' width='70' class='mr-3'>
+															<span>".$contents['TITLE']."</span>
+														</div>
+														<div class='col-2 text-right'>
+															<span style='font-size:10px'>x</span>
+															<span id='quantity' class='font-weight-bold'>".$contents['QUANTITY']."</span>
+														</div>
+														<div class='col-2 text-right'>
+															<span>".$contents['PRICE']."€</span>
+														</div>
+													</div>";
+									}
+									
+									echo	"	</div>";
+									if($_SESSION['email'] == "admin@blockgame.com"){
+										echo "<input type='button' name='submit' id=".$modify." class='form-submit modify' value='Modifica' onclick='window.location=".$link."'>";
+									}
+									echo 	"	<input type='button' name='submit' id=".$delete." class='form-submit delete' value='Elimina' onclick='deleteOrders(".$order['id'].")'/>
+											</div>";
+								}
+								disconnect();
+							?>
+						</div>
+					</div>
+				</div>
+				
+				<?php
+					if($_SESSION['email'] == "admin@blockgame.com"){
+				?>
+				<!---- Modal ADD Order ---->
+				<div class="modal fade" id="addOrderModal" tabindex="-1" role="dialog" aria-labelledby="addOrderModalCenterTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-body container-fom">
+								<div class="content-form settings-form">
+									<form method="POST" id="add-order-form" class="bckg-form" action="php/addOrder.php">
+										<div class="form-group">
+											<span>Email</span>
+											<input type="email" class="form-input" name="email" id="email" maxlength="149" required/>
+										</div>
+										<div class="form-group">
+											<span>Payment type ID</span>
+											<input type="text" class="form-input" name="payment_type" id="payment_type" maxlength="11" required/>
+										</div>
+										<div class="form-group">
+											<input type="submit" name="submit" id="add_Order" class="form-submit modify" value="Inserisci ordine"/>
+										</div>
+									</form>
 								</div>
-								<input type="button" name="submit" id="delete1" class="form-submit delete" value="Elimina"/>
-							</div>
-							<div class="bckg-row row py-2" onmouseover="blurElements('info2'); showSingleElem('delete2');" onmouseout="notBlurElements('info2'); hideSingleElem('delete2')">
-								<div class="row align-items-center mx-0" id="info2" style="width:100%">
-									<div class="col-3">
-										<span scope="row">10/12/2018</span>
-									</div>
-									<div class="col-5">
-										<img src="img/fifa-19.jpg" alt="" height="90" width="70" class="mr-3">
-										<span>Fifa</span>
-									</div>
-									<div class="col-2 text-right">
-										<span style="font-size:10px">x</span>
-										<span id="quantity" class="font-weight-bold">1</span>
-									</div>
-									<div class="col-2 text-right">
-										<span>80€</span>
-									</div>
-								</div>
-								<input type="button" name="submit" id="delete2" class="form-submit delete" value="Elimina"/>
 							</div>
 						</div>
 					</div>
 				</div>
+				<!---- Modal ADD Order ---->				
+				<?php
+					}
+				?>
 			</div>
 		</section>
 		<!-- ORDERS -->
@@ -118,5 +193,6 @@
 		<script type="text/javascript" src="js/logo.js"></script>
 		<script src="js/password-hide.js"></script>
 		<script type="text/javascript" src="js/blur.js"></script>
+		<script type="text/javascript" src="js/orders.js"></script>
 	</body>
 </html>

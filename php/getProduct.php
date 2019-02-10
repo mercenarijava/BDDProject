@@ -6,7 +6,7 @@ include "db_helper.php";
 $var = $_GET["var"];
 
 connect();
-$sql = "SELECT id,title,category,price,description,free_quantity FROM games WHERE title='$var'";
+$sql = "SELECT G.id,G.title,G.category,G.description,V.price,V.free_quantity FROM games AS G, videogames AS V WHERE title='$var' AND G.id=V.id_game LIMIT 1";
 $result = $GLOBALS['connection']->query($sql);
 if ($result->num_rows > 0) {
   // output data of each row

@@ -51,19 +51,19 @@
 						<h6 class="text-uppercase font-weight-bold">Products</h6>
 						<hr class="deep mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
 						<p>
-							<a href="home.php?console=PC">PC</a>
+							<a href="home.php?console=switch">Switch</a>
 						</p>
 						<p>
-							<a href="home.php?console=XBOX">XBOX</a>
+							<a href="home.php?console=xboxone">XBOX</a>
 						</p>
 						<p>
-							<a href="home.php?console=PS4">Playstation 4</a>
+							<a href="home.php?console=ps4">Playstation 4</a>
 						</p>
 						<p>
-							<a href="home.php?console=PS3">Playstation 3</a>
+							<a href="home.php?console=ps3">Playstation 3</a>
 						</p>
 						<p>
-							<a href="home.php?console=Nintendo">Nintendo</a>
+							<a href="home.php?console=nintendo">Nintendo</a>
 						</p>
 
 					</div>

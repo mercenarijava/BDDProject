@@ -12,14 +12,15 @@
             echo "e1";
         }else{
             $results=mysqli_fetch_array($payment_type);
-            $payment_type_id = $results["id"];
+            $payment_type_id = $results["payment_type"];
+			$order_id = insertOrder($_SESSION['email'], $payment_type_id);
+			
             foreach ($games as $value) {
                 updateGameQuantity($value["game_id"], $value["game_quantity"] - $value["buyQuantity"]);
-                insertOrder($_SESSION['email'], $value["game_id"], $payment_type_id, $value["buyQuantity"], $value["console_id"]);
+                insertContents($value["game_id"], $order_id, $value["buyQuantity"]);
             }
 	        echo "s1";
         }
-
 	}else{
 	    echo "e2";
 	}

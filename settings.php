@@ -8,6 +8,12 @@
 	
 	connect();
 	$result = getInfoUser($_SESSION['email']);
+	$result_payment = getCreditCard($result['payment_type']);
+	if($result_payment){
+		$array = explode("-", $result_payment["expiration_date"]);
+		$year = $array[0];
+		$month = $array[1];
+	}
 	disconnect();
 ?>
 <html lang="en">
@@ -134,33 +140,17 @@
 												<span class="col-sm-4">Titolare</span>
 											</div>
 										</div>
+										<?php if($result_payment){?>
 										<div class="form-group row option" onmouseover="blurElements('info1'); show('modify1','delete1');" onmouseout="notBlurElements('info1'); hide('modify1','delete1');">
 											<div id="info1">
-												<span class="col-sm-4">**********5321</span>
-												<span class="col-sm-4">02/2027</span>
-												<span class="col-sm-4">Marco Boriello</span>
+												<span class="col-sm-4"><?php echo $result_payment["key_payment"]; ?></span>
+												<span class="col-sm-4"><?php echo $result_payment["expiration_date"]; ?></span>
+												<span class="col-sm-4"><?php echo $result_payment["owner"]; ?></span>
 											</div>
 											<input type="button" name="submit" id="modify1" class="form-submit modify" value="Modifica" data-toggle="modal" data-target="#modifyCreditCardModal"/>
-											<input type="button" name="submit" id="delete1" class="form-submit delete" value="Elimina"/>
+											<input type="button" name="submit" id="delete1" class="form-submit delete" value="Elimina" onClick="deletePaymentType(<?php echo $result['payment_type'].",'".$_SESSION['email']."'"; ?>)"/>
 										</div>
-										<div class="form-group row option" onmouseover="blurElements('info2'); show('modify2','delete2');" onmouseout="notBlurElements('info2'); hide('modify2','delete2');">
-											<div id="info2">
-												<span class="col-sm-4">**********5321</span>
-												<span class="col-sm-4">02/2027</span>
-												<span class="col-sm-4">Marco Boriello</span>
-											</div>
-											<input type="button" name="submit" id="modify2" class="form-submit modify" value="Modifica" data-toggle="modal" data-target="#modifyCreditCardModal"/>
-											<input type="button" name="submit" id="delete2" class="form-submit delete" value="Elimina"/>
-										</div>
-										<div class="form-group row option" onmouseover="blurElements('info3'); show('modify3','delete3');" onmouseout="notBlurElements('info3'); hide('modify3','delete3');">
-											<div id="info3">
-												<span class="col-sm-4">**********5321</span>
-												<span class="col-sm-4">02/2027</span>
-												<span class="col-sm-4">Marco Boriello</span>
-											</div>
-											<input type="button" name="submit" id="modify3" class="form-submit modify" value="Modifica" data-toggle="modal" data-target="#modifyCreditCardModal"/>
-											<input type="button" name="submit" id="delete3" class="form-submit delete" value="Elimina"/>
-										</div>
+										<?php  }else{ echo "Nessuna carta di credito salvata."; }?>
 										<div class="form-group">
 											<input type="button" name="submit" id="submitOptionPayment" class="form-submit settings-btn"  value="Aggiungi carta" data-toggle="modal" data-target="#addCreditCardModal"/>
 										</div>
@@ -176,23 +166,27 @@
 								<div class="modal-content">
 									<div class="modal-body container-fom">
 										<div class="content-form settings-form">
-											<form method="POST" id="modify-credit-card-form" class="bckg-form">
+											<form method="POST" id="modify-credit-card-form" class="bckg-form" action="php/modifyCreditCard.php">
+												<div class="form-group">
+													<span>ID:</span>
+													<input type="text" class="form-input" name="id" id="idModify" placeholder="<?php echo $result['payment_type']; ?>" value = "<?php echo $result['payment_type']; ?>" style="background-color: gainsboro;" readonly required/>
+												</div>
 												<div class="form-group">
 													<span>Numero di carta:</span>
-													<span>**********5321</span>
+													<input type="text" class="form-input" name="number" id="numberModify" placeholder="<?php echo $result_payment["key_payment"]; ?>" value = "<?php echo $result_payment["key_payment"]; ?> "style="background-color: gainsboro;" readonly required/>
 												</div>
 												<div class="form-group">
 													<span>Propietario:</span>
-													<input type="text" class="form-input" name="name" id="nameModify" placeholder="Marco Boriello" required/>
+													<input type="text" class="form-input" name="owner" id="ownerModify" placeholder="<?php echo $result_payment["owner"]; ?>" value = "<?php echo $result_payment["owner"]; ?>" required/>
 												</div>
 												<div class="form-group">
 													<div class="row ml-0">
 														<span class="col-sm-12 pl-0">Data di scadenza:</span>
 													</div>
 													<div class="row ml-0">
-														<input type="number" min="01" max="12" class="form-input col-sm-3 ml-0" maxlength="2" name="month" id="monthModify"  placeholder="02" required/>
+														<input type="number" min="01" max="12" class="form-input col-sm-3 ml-0" maxlength="2" name="month" id="monthModify"  placeholder="<?php echo $month ?>" value="<?php echo $month ?>" required/>
 														<span class="col-sm-1 ml-0">/</span>
-														<input type="number" min="2019" max="2040" class="form-input col-sm-4 ml-0" maxlength="4" name="year" id="yearModify" placeholder="2027" required/>
+														<input type="number" min="2019" max="2040" class="form-input col-sm-4 ml-0" maxlength="4" name="year" id="yearModify" placeholder="<?php echo $year ?>" value="<?php echo $year ?>" required/>
 													</div>
 												</div>
 												<div class="form-group">
@@ -212,14 +206,14 @@
 								<div class="modal-content">
 									<div class="modal-body container-fom">
 										<div class="content-form settings-form">
-											<form method="POST" id="add-credit-card-form" class="bckg-form">
+											<form method="POST" id="add-credit-card-form" class="bckg-form" action="php/addCreditCard.php">
 												<div class="form-group">
 													<span>Propietario:</span>
-													<input type="text" class="form-input" name="name" id="name-surname"required/>
+													<input type="text" class="form-input" name="owner" id="name-surname"required/>
 												</div>
 												<div class="form-group">
 													<span>Numero di carta:</span>
-													<input type="text" class="form-input" pattern="[0-9]{26}" title="Il Numero di carta deve avere 26 numeri" name="cardNumber" id="cardNumber" required />
+													<input type="text" class="form-input" pattern="[0-9]{16}" title="Il Numero di carta deve avere 26 numeri" name="cardNumber" id="cardNumber" required />
 												</div>
 												<div class="form-group">
 													<span>CVV:</span>
@@ -275,5 +269,6 @@
 		<script src="js/password-hide.js"></script>
 		<script type="text/javascript" src="js/blur.js"></script>
 		<script type="text/javascript" src="js/padlock.js"></script>
+		<script type="text/javascript" src="js/settings.js"></script>
 	</body>
 </html>

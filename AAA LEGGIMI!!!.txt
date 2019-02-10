@@ -1,5 +1,5 @@
 |-------|
-| V 1.0 |
+| V 6.0 |
 |-------|
 
 Struttura cartella:
@@ -7,13 +7,3 @@ Struttura cartella:
 	- cartella 'icone' => icone presenti nella bozza
 	- cartella 'img' => immagini presenti nel sito
 	- cartella 'js' => animazioni sito
-	- carrello.html => pagina del carrello
-	- home.html => pagina home
-	- carrello.html => pagina del carrello
-	- t-shirt.html => pagina dell'articolo
-	- design.xd => bozza grafica del sito
-
-
-Al momento l'intero sito è statico, bisogna aggiungere tutta la parte in php.
-Una volta aggiunta basterà copiare la pagina t-shirt.html e farla uguale per tutti gli altri articoli.
-
