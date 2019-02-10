@@ -8,11 +8,10 @@
         // get payment type
         // if payment type == null return e1
         $payment_type = getPaymentTypeOfUser($_SESSION['email']);
-        if(mysqli_num_rows($payment_type) == 0){
+        if(sizeof($payment_type) == 0){
             echo "e1";
         }else{
-            $results=mysqli_fetch_array($payment_type);
-            $payment_type_id = $results["payment_type"];
+            $payment_type_id = $payment_type[0]["payment_type"];
 			$order_id = insertOrder($_SESSION['email'], $payment_type_id);
 			
             foreach ($games as $value) {

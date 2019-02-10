@@ -148,7 +148,6 @@ function getGames($filterGet){
 		$order .= $filterGet->order_price? 'ASC' : 'DESC';
 	}
 	$sql = sprintf($GLOBALS['sql_get_games'], $where, $order ,$filterGet->offset);
-
     $statement = $GLOBALS['connection']->prepare($sql);
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -177,8 +176,10 @@ function getMinIdVideogame(){
 
 function getPaymentTypeOfUser($username){
 	$sql = sprintf($GLOBALS['sql_payment_type_of_user'], $username);
-	$result = $GLOBALS['connection']->query($sql);
-	return $result;
+    $statement = $GLOBALS['connection']->prepare($sql);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+	return $results;
 }
 
 function getQuantity($id_videogame){
@@ -190,12 +191,18 @@ function getQuantity($id_videogame){
 
 function updateGameQuantity($gameId, $quantity){
 	$sql = sprintf($GLOBALS['sql_update_game_quantity'], $quantity, $gameId);
-	$result = $GLOBALS['connection']->query($sql);
+    $statement = $GLOBALS['connection']->prepare($sql);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
 
 function insertContents($gameId, $order_id, $quantity){
 	$sqlC = sprintf($GLOBALS['sql_insert_contents'], $gameId, $order_id, $quantity);
-	$result = $GLOBALS['connection']->query($sqlC);
+    $statement = $GLOBALS['connection']->prepare($sqlC);
+    $statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
 
 function getContentsByOrderId($order_id){
@@ -217,12 +224,15 @@ function getOrders(){
 
 function insertOrder($username, $paymentTypeId){
 	$sqlA = sprintf($GLOBALS['sql_max_id_order']);
-	$max_id_orders = $GLOBALS['connection']->query($sqlA);
-	$max_id = mysqli_fetch_assoc($max_id_orders);
+    $statement = $GLOBALS['connection']->prepare($sqlA);
+    $statement->execute();
+
+    $max_id = $statement->fetchAll(PDO::FETCH_ASSOC);
 	$next_id = $max_id['max_id']+1;
 
 	$sqlB = sprintf($GLOBALS['sql_insert_order'], $next_id, $username, $paymentTypeId);
-	$resultB = $GLOBALS['connection']->query($sqlB);
+    $statement1 = $GLOBALS['connection']->prepare($sqlB);
+    $statement1->execute();
 
 	return $next_id;
 }
