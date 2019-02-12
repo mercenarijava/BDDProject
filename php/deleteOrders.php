@@ -10,9 +10,9 @@
 			updateGameQuantity($contents['videogame_id'], $free_quantity);
 		}
 		deleteOrdersById($order_id);
-	    echo "s1";
+	    echo json_encode("s1");
 	}else{
-	    echo "e2";
+	    echo json_encode("e2");
 	}
 	disconnect();
 ?>

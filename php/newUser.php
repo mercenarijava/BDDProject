@@ -15,14 +15,16 @@ $pwd = $_GET['pwd'];
 //control if there is an user with the same name
 $sql = "SELECT * FROM users WHERE username='$username'";
 $result = $GLOBALS['connection']->query($sql);
-if ($result->num_rows > 0) {
+if ($result->rowCount() > 0) {
     $sql = "UPDATE users SET name='$nome',surname='$cognome',address='$indirizzo',phone='$cell',password='$pwd' WHERE username='$username'";
-    $result = $GLOBALS['connection']->query($sql);
+		$prep = $GLOBALS['connection']->prepare($sql);
+		$prep->execute();
 }
 //insert the new user
 else{
     $sql = "INSERT INTO users (name,surname,address,phone,username,password) VALUES ('$nome','$cognome','$indirizzo','$cell','$username','$pwd')";
-    $result = $GLOBALS['connection']->query($sql);
+		$prep = $GLOBALS['connection']->prepare($sql);
+		$prep->execute();
     disconnect();
 }
 ?>

@@ -6,8 +6,10 @@ $id = $_GET['id'];
 
 connect();
 $sql = "DELETE FROM games_console WHERE id_game = '$id'";
-$result = $GLOBALS['connection']->query($sql);
+$prep = $GLOBALS['connection']->prepare($sql);
+$prep->execute();
 $sql = "DELETE FROM games WHERE id = '$id'";
-$result = $GLOBALS['connection']->query($sql);
+$prep = $GLOBALS['connection']->prepare($sql);
+$prep->execute();
 disconnect();
 ?>

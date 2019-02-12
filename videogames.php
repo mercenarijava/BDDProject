@@ -69,8 +69,7 @@
 									$videogames_list = getVideogames(); 
 									
 									if ($videogames_list) {
-										while($videogame = mysqli_fetch_assoc($videogames_list)){
-											
+										foreach($videogames_list->fetchAll(PDO::FETCH_ASSOC) as $videogame){
 											echo "<tr>
 												  <td>".$videogame['videogame_id']."</td>
 												  <td><img src='".$videogame['LOGO']."' alt='' height='90' width='70' class='mr-3'></td>
@@ -79,7 +78,7 @@
 												  <td>".$videogame['PRICE']."€</td>
 												  <td>".$videogame['QUANTITY']."</td>
 												</tr>";
-										}		
+										}
 									}
 									disconnect();
 								?>

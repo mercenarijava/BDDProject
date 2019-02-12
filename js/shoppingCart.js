@@ -29,8 +29,6 @@ function connectListeners(){
 
 function buyGames (){
     if(chart.length == 0) return;
-
-
 	jQuery.ajax({
 		url: 'php/buy.php',
 		type: "POST",

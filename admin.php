@@ -2,7 +2,7 @@
 	include 'php/session.php';								/* IMPORTANT DON'T DELETE */
 	include 'page_component/navbar.php';					/* IMPORTANT DON'T DELETE */
 	include 'page_component/footer.php';					/* IMPORTANT DON'T DELETE */
-	
+
 	redirect_login_false();									/* IMPORTANT DON'T DELETE */
 	redirect_admin_false();									/* IMPORTANT DON'T DELETE */
 ?>
@@ -23,12 +23,12 @@
 <body onload="tableThread();">
 
 
-  <?php 
+  <?php
 	/**
 		IMPORTANT, DON'T DELETE or MODIFY.
 	*/
 	bckg_navbar(1);
-	
+
 	?>
 
 	<section class="general-form">
@@ -84,33 +84,9 @@
                   </p></td>
                 </tr>
                 <tr>
-                  <th scope="row" class="pt-3">Città</th>
-                  <td><p class="pt-2">
-                    <input type="text" class="form-control" name="citta" id="citta" aria-label="Username" aria-describedby="basic-addon1">
-                  </p></td>
-                </tr>
-                <tr>
-                  <th scope="row" class="pt-3">CAP</th>
-                  <td><p class="pt-2">
-                  <input type="text" class="form-control" name="cap" id="cap" aria-label="Username" aria-describedby="basic-addon1">
-                  </p></td>
-                </tr>
-                <tr>
                   <th scope="row" class="pt-3">Cellulare</th>
                   <td><p class="pt-2">
                       <input type="text" class="form-control" name="cell" id="cell" aria-label="Username" aria-describedby="basic-addon1">
-                  </p></td>
-                </tr>
-                <tr>
-                  <th scope="row" class="pt-3">P. IVA</th>
-                  <td><p class="pt-2">
-                  <input type="text" class="form-control" name="piva" id="piva" aria-label="Username" aria-describedby="basic-addon1">
-                  </p></td>
-                </tr>
-                <tr>
-                  <th scope="row" class="pt-3">E-mail</th>
-                  <td><p class="pt-2">
-                    <input type="text" class="form-control" name="email" id="mail" aria-label="Username" aria-describedby="basic-addon1">
                   </p></td>
                 </tr>
                 <tr>
@@ -288,16 +264,16 @@
     </div>
   </div>
 
-  <?php 
+  <?php
 	/**
 		IMPORTANT, DON'T DELETE or MODIFY.
 	*/
 	footer();
-	
+
 	?>
 
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/logo.js"></script>

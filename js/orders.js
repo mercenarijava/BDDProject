@@ -50,8 +50,7 @@ function deleteOrders(order_id){
 		type: "POST",
 		data: {"id" : order_id},
 		success: function(data) {
-		    var success = data == "s1";
-		    window.location.href = "orders.php?delete=" + (success? "success" : "failed");
+		    window.location.href = "orders.php?delete=success";
 		}
 	});
 }

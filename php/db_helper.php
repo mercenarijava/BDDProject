@@ -96,21 +96,23 @@ function disconnect(){
 function login($username, $pass){
 	$password= crypt($pass,'$6$rounds=5000$blockgame$');//crypt
 	$sql = sprintf($GLOBALS['sql_login'], $username, $password);
-	$result = $GLOBALS['connection']->query($sql);
-	return $result;
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$statement->execute();
+	return $statement;
 }
 
 function signin($name, $surname, $address, $phone, $username, $pass){
 	$user = login($username, $password);
-	$exists = mysqli_num_rows($user) > 0;
+	$exists = $user->rowCount() > 0;
 	if($exists > 0){
 		return false;
 	}
 	$password= crypt($pass,'$6$rounds=5000$blockgame$');//crypt
 	$sql = sprintf($GLOBALS['sql_signin'], $name, $surname, $address, $phone, $username, $password);
-	$GLOBALS['connection']->query($sql);
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$statement->execute();
 	$user = login($username, $password);
-	$exists = mysqli_num_rows($user) > 0;
+	$exists = $user->rowCount() > 0;
 	return $exists > 0;
 }
 
@@ -156,22 +158,25 @@ function getGames($filterGet){
 
 function getVideogames(){
 	$sql = sprintf($GLOBALS['sql_get_videogames']);
-	$result = $GLOBALS['connection']->query($sql);
-	return $result;
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$statement->execute();
+	return $statement;
 }
 
 function getMaxIdVideogame(){
 	$sql = sprintf($GLOBALS['sql_get_max_id_videogames']);
-	$result = $GLOBALS['connection']->query($sql);
-	$max_id =  mysqli_fetch_assoc($result);
-	return $max_id['max_id'];
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$statement->execute();
+	$max_id = $statement->fetchAll(PDO::FETCH_ASSOC);
+	return $max_id[0]['max_id'];
 }
 
 function getMinIdVideogame(){
 	$sql = sprintf($GLOBALS['sql_get_min_id_videogames']);
-	$result = $GLOBALS['connection']->query($sql);
-	$min_id =  mysqli_fetch_assoc($result);
-	return $min_id['min_id'];
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$statement->execute();
+	$min_id = $statement->fetchAll(PDO::FETCH_ASSOC);
+	return $min_id[0]['min_id'];
 }
 
 function getPaymentTypeOfUser($username){
@@ -184,9 +189,10 @@ function getPaymentTypeOfUser($username){
 
 function getQuantity($id_videogame){
 	$sql = sprintf($GLOBALS['sql_videogame_quantity'], $id_videogame);
-	$result = $GLOBALS['connection']->query($sql);
-	$quantity =  mysqli_fetch_assoc($result);
-	return $quantity['QUANTITY'];
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$statement->execute();
+	$quantity = $statement->fetchAll(PDO::FETCH_ASSOC);
+	return $quantity[0]['QUANTITY'];
 }
 
 function updateGameQuantity($gameId, $quantity){
@@ -207,27 +213,30 @@ function insertContents($gameId, $order_id, $quantity){
 
 function getContentsByOrderId($order_id){
 	$sql_contets = sprintf($GLOBALS['sql_get_contents'], $order_id);
-	$result_contents = $GLOBALS['connection']->query($sql_contets);
-	return $result_contents;
+	$statement = $GLOBALS['connection']->prepare($sql_contets);
+	$statement->execute();
+	return $statement;
 }
 
 function deleteContent($id_videogame, $id_order){
 	$sql_contets = sprintf($GLOBALS['sql_delete_content'], $id_videogame, $id_order);
-	$result_content = $GLOBALS['connection']->query($sql_contets);
+	$statement = $GLOBALS['connection']->prepare($sql_contets);
+	$statement->execute();
 }
 
 function getOrders(){
 	$get_orders = sprintf($GLOBALS['sql_get_all_orders']);
-	$result = $GLOBALS['connection']->query($get_orders);
-	return $result;
+	$statement = $GLOBALS['connection']->prepare($get_orders);
+	$statement->execute();
+	return $statement;
 }
 
 function insertOrder($username, $paymentTypeId){
-	$sqlA = sprintf($GLOBALS['sql_max_id_order']);
+	$sqlA = $GLOBALS['sql_max_id_order'];
     $statement = $GLOBALS['connection']->prepare($sqlA);
     $statement->execute();
 
-    $max_id = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $max_id = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
 	$next_id = $max_id['max_id']+1;
 
 	$sqlB = sprintf($GLOBALS['sql_insert_order'], $next_id, $username, $paymentTypeId);
@@ -239,119 +248,128 @@ function insertOrder($username, $paymentTypeId){
 
 function getOrdersByUsername($username){
 	$get_orders = sprintf($GLOBALS['sql_get_orders'],$username);
-	$result = $GLOBALS['connection']->query($get_orders);
-	return $result;
+	$statement = $GLOBALS['connection']->prepare($get_orders);
+	$statement->execute();
+	return $statement;
 }
 
 function getOrdersById($id){
 	$get_orders = sprintf($GLOBALS['sql_get_order_by_id'], $id);
-	$res = $GLOBALS['connection']->query($get_orders);
-	$result = mysqli_fetch_assoc($res);
+	$statement = $GLOBALS['connection']->prepare($get_orders);
+	$statement->execute();
+	$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 	return $result;
 }
 
 function modifyOrdersPaymentType($payment_type, $oldPayment_type){
 	if($payment_type == NULL){
 		$sql = sprintf($GLOBALS['sql_modify_orders_payment_type_NULL'], $oldPayment_type);
-		$result = $GLOBALS['connection']->query($sql);
+		$statement1 = $GLOBALS['connection']->prepare($sql);
+		$statement1->execute();
 	}
 	else{
 		$sql = sprintf($GLOBALS['sql_modify_orders_payment_type'],  $payment_type, $oldPayment_type);
-		$result = $GLOBALS['connection']->query($sql);
+		$statement2 = $GLOBALS['connection']->prepare($sql);
+		$statement2->execute();
 	}
 }
 
 function deleteOrdersById($order_id){
 	$sql = sprintf($GLOBALS['slq_delete_orders'], $order_id);
-	$result = $GLOBALS['connection']->query($sql);
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$statement->execute();
 }
 
 function getInfoUser($username){
 	$sql = sprintf($GLOBALS['sql_get_info_user'], $username);
-	$result = $GLOBALS['connection']->query($sql);
-	$row=mysqli_fetch_assoc($result);
-	return $row;
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+	return $results;
 }
 
 function modifyEmail($username,$newUsername){
 	$sql = sprintf($GLOBALS['sql_modify_email'], $newUsername ,$username);
-	$result = $GLOBALS['connection']->query($sql);
-	return $result;
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$results = $statement->execute();
+	return $results;
 }
 
 function modifyAccount($username, $newUsername, $newPassword){
 	$sql = sprintf($GLOBALS['sql_modify_account'], $newUsername, $newPassword ,$username);
-	$result = $GLOBALS['connection']->query($sql);
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$result = $statement->execute();
 	return $result;
 }
 
 function modifyPersonalInfo($username, $name, $surname, $address, $phone){
 	$sql = sprintf($GLOBALS['sql_modify_personal_info'], $name, $surname, $address, $phone ,$username);
-	$result = $GLOBALS['connection']->query($sql);
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$result = $statement->execute();
 	return $result;
 }
 
 function getCreditCard($id){
 	$sql = sprintf($GLOBALS['sql_get_payment_type'], $id);
-	$result = $GLOBALS['connection']->query($sql);
-	$row=mysqli_fetch_assoc($result);
-	return $row;
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$statement->execute();
+    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+	return $results;
 }
 
 function modifyCreditCard($id, $owner, $date){
 	$sql = sprintf($GLOBALS['sql_modify_credit_card'], $owner, $date, $id);
-	$result = $GLOBALS['connection']->query($sql);
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$statement->execute();
 }
 
 function modifyCreditCardId($next_id, $username){
 	//Associo l'utente alla nuova carta
 	if($next_id == NULL){
 		$sqlC = sprintf($GLOBALS['sql_modify_payment_type_NULL'], $username);
-		$modifyAccount = $GLOBALS['connection']->query($sqlC);
+		$statement1 = $GLOBALS['connection']->prepare($sqlC);
+		$statement1->execute();
 	}
 	else{
 		$sqlC = sprintf($GLOBALS['sql_modify_payment_type'], $next_id, $username);
-		$modifyAccount = $GLOBALS['connection']->query($sqlC);
+		$statement2 = $GLOBALS['connection']->prepare($sqlC);
+		$statement2->execute();
 	}
 }
 
 function deleteCreditCard($id){
 	$sql = sprintf($GLOBALS['sql_delete_payment_type_of_user'], $id);
-	$result = $GLOBALS['connection']->query($sql);
+	$statement = $GLOBALS['connection']->prepare($sql);
+	$statement->execute();
 }
 
 function addCreditCard($username, $cardNumber, $owner, $cvv, $date){
-	$credit_card = getPaymentTypeOfUser($username);
-	$card = mysqli_fetch_assoc($credit_card);
-
-	echo $card['payment_type'];
-
 	//Ricavo il max id e il next_id
 	$sqlB= sprintf($GLOBALS['sql_get_max_payment_type']);
-	$payment_type = $GLOBALS['connection']->query($sqlB);
-	$max_id = mysqli_fetch_assoc($payment_type);
-	$next_id = $max_id['id']+1;
+	$statement1 = $GLOBALS['connection']->prepare($sqlB);
+	$statement1->execute();
+	$max_id = $statement1->fetchAll(PDO::FETCH_ASSOC);
+	$next_id = $max_id[0]['id']+1;
 
 	echo $next_id;
 
 	//Creo un payment_type
 	$sqlA = sprintf($GLOBALS['sql_add_payment_type_of_user'], $next_id, $cardNumber, $owner, $cvv, $date);
-	$result = $GLOBALS['connection']->query($sqlA);
+	$statement2 = $GLOBALS['connection']->prepare($sqlA);
+	$result = $statement2->execute();
 
-	//Sostituisco il vecchio id con il nuovo sugli orders
-	modifyOrdersPaymentType($next_id, $card['payment_type']);
-
-	modifyCreditCardId($next_id, $username);
-
-	//Se esisteva gia un payment_type associato lo elimino
-	$exists = mysqli_num_rows($credit_card) > 0;
-	if($exists > 0){
+	$credit_card = getPaymentTypeOfUser($username);
+	if(!empty($credit_card)){
+		$card = $credit_card[0];
+		echo $card['payment_type'];
+		
+		//Sostituisco il vecchio id con il nuovo sugli orders
+		modifyOrdersPaymentType($next_id, $card['payment_type']);
+		modifyCreditCardId($next_id, $username);
+		
+		//Se esisteva gia un payment_type associato lo elimino
 		deleteCreditCard($card['payment_type']);
 	}
-
 	return $result;
 }
-
-
-// COSE PER TEST
 ?>

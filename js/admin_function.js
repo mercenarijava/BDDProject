@@ -2,15 +2,15 @@
 var nome,cognome,usern,indirizzo,cell,pwd,textUser;
 var is_new_user = false;
 //variabili Products
-var nomeP,descrizione,categoria,consoleP,prezzo,quantita,img,id_prodotto;
+var nomeP,descrizione,categoria,consoleP,prezzo,quantita,id_prodotto,img;
 var is_new_product = false;
 
 
   function selectChanged(valore){
     var obj = JSON.parse(Get("php/refreshValue.php?id_prodotto="+id_prodotto+"&console="+valore.value));
-    if(obj!=''){
-      document.getElementById('quantita').value=obj.free_quantity;
-      document.getElementById('prezzo').value=obj.price;
+    if(obj!=""){
+      document.getElementById('quantita').value=obj[0]['free_quantity'];
+      document.getElementById('prezzo').value=obj[0]['price'];
     }
     else{
       document.getElementById('quantita').value="";
@@ -57,12 +57,12 @@ var is_new_product = false;
     var contentUser = document.getElementById('tab_utenti');
     var json_obj = JSON.parse(Get("php/getUser.php?var="+textUser));
     if(json_obj!=""){
-      document.getElementById('nome').value=json_obj.name; nome = json_obj.name;
-      document.getElementById('cognome').value=json_obj.surname; cognome = json_obj.name;
-      document.getElementById('username').value=json_obj.username; username = json_obj.name;
-      document.getElementById('indirizzo').value=json_obj.address;  indirizzo = json_obj.name;
-      document.getElementById('cell').value=json_obj.phone; cell = json_obj.name;
-      document.getElementById('pwd').value=json_obj.password; pwd = json_obj.name;
+      document.getElementById('nome').value=json_obj[0]['name']; nome = json_obj[0]['name'];
+      document.getElementById('cognome').value=json_obj[0]['surname']; cognome = json_obj[0]['surname'];
+      document.getElementById('username').value=json_obj[0]['username']; username = json_obj[0]['username'];
+      document.getElementById('indirizzo').value=json_obj[0]['address'];  indirizzo = json_obj[0]['address'];
+      document.getElementById('cell').value=json_obj[0]['phone']; cell =json_obj[0]['phone'];
+      document.getElementById('pwd').value=json_obj[0]['password']; pwd = json_obj[0]['password'];
       contentUser.style.display = "block";
       document.getElementById('button_elimina_utente').style.display="block";
       is_new_user = false;
@@ -95,12 +95,12 @@ var is_new_product = false;
         elem.text = consoleG[i].name;
         select.add(elem,elem[0]);
       }
-      id_prodotto = json_obj.id;
-      document.getElementById('nomeProdotto').value=json_obj.title;
-      document.getElementById('categoria').value=json_obj.category;
-      document.getElementById('quantita').value=json_obj.free_quantity;
-      document.getElementById('descrizione').value=json_obj.description;
-      document.getElementById('prezzo').value=json_obj.price;
+      id_prodotto = json_obj[0]['id'];
+      document.getElementById('nomeProdotto').value=json_obj[0]['title'];
+      document.getElementById('categoria').value=json_obj[0]['category'];
+      document.getElementById('quantita').value=json_obj[0]['free_quantity'];
+      document.getElementById('descrizione').value=json_obj[0]['description'];
+      document.getElementById('prezzo').value=json_obj[0]['price'];
       contentProduct.style.display="block";
       document.getElementById('button_elimina_prodotto').style.display="block";
       is_new_product = false;
@@ -136,22 +136,28 @@ var is_new_product = false;
         consoleP = select.value;
         prezzo = document.getElementById('prezzo').value;
         quantita = document.getElementById('quantita').value;
-        img = document.getElementById('exampleFormControlFile1').value;
+        img_input = document.getElementById('exampleFormControlFile1');
+        img_name = img_input.value;
+        img_name = img_name.replace(img_name.substr(0,12),"img/");
         if(controlledOkProduct()){
-          var url = "?name="+nomeP+"&description="+descrizione+
-          "&category="+categoria+"&console="+consoleP+"&price="+prezzo+"&quantity="+
-          quantita+"&img="+img;
-          if(is_new_product){
-            var Httpreq = new XMLHttpRequest();
-            Httpreq.open("GET","php/newProduct.php"+url,false);
-            Httpreq.send(null);
-            contentProduct.style.display="none";
-          }
+          if(img_input.files[0].size/1024/1024>2){alert('Choose a lighter file (MAX 2M)');}
           else{
-            var Httpreq = new XMLHttpRequest();
-            Httpreq.open("GET","php/setProduct.php"+url+"&id="+id_prodotto,false);
-            Httpreq.send(null);
-            contentProduct.style.display="none";
+            if(img_name != ""){uploadImg(img_input);}
+            var url = "?name="+nomeP+"&description="+descrizione+
+            "&category="+categoria+"&console="+consoleP+"&price="+prezzo+"&quantity="+
+            quantita+"&img="+img_name;
+            if(is_new_product){
+              var Httpreq = new XMLHttpRequest();
+              Httpreq.open("GET","php/newProduct.php"+url,false);
+              Httpreq.send(null);
+              contentProduct.style.display="none";
+            }
+            else{
+              var Httpreq = new XMLHttpRequest();
+              Httpreq.open("GET","php/setProduct.php"+url+"&id="+id_prodotto,false);
+              Httpreq.send(null);
+              contentProduct.style.display="none";
+            }
           }
         }
       }
@@ -194,6 +200,7 @@ var is_new_product = false;
       var Httpreq = new XMLHttpRequest();
       Httpreq.open("GET","php/deleteProduct.php?id="+id_prodotto,false);
       Httpreq.send(null);
+      alert(id_prodotto);
       contentUser.style.display = "none";
       return Httpreq.responseText;
     }
@@ -319,4 +326,20 @@ var is_new_product = false;
   function validateEmail(email){
     var re = /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
     return re.test(email);
+  }
+
+  function uploadImg(img){
+    var blobFile = img.files[0];
+    var formData = new FormData();
+    formData.append('file',blobFile);
+    $.ajax({
+      url: "upload.php",
+      type: "POST",
+      data: formData,
+      cache: false,
+      processData: false,
+      contentType: false,
+      success: function(response){alert('Image upload successfull');},
+      error: function(jqXHR,testStatus,errorMessage){alert('Something get wrong with the photo upload');}
+    });
   }

@@ -12,14 +12,15 @@
 	}
 	connect();
 	
-	$order = getOrdersById($_GET['orderId']);
-	$allContents = getContentsByOrderId($order['id']);
+	$order = getOrdersById($_GET['orderId'])[0];
+	$allContents = getContentsByOrderId($_GET['orderId']);
 	$max_id_videogame = getMaxIdVideogame();
 	$min_id_videogame = getMinIdVideogame();
+
 	
 	$videogames_quantity = getVideogames();
 	$max_quantity = array();
-	while($videogame = mysqli_fetch_array($videogames_quantity)){
+	foreach($videogames_quantity->fetchAll(PDO::FETCH_ASSOC) as $videogame){
 		$max_quantity[$videogame['videogame_id']] = $videogame['QUANTITY'];
 	}
 ?>
@@ -75,7 +76,7 @@
 							<?php
 									$username = "<span class='col' style='text-align: -webkit-center;'>".$order['username_user']."</span>";
 													
-									while($contents = mysqli_fetch_array($allContents)){
+									foreach($allContents->fetchAll(PDO::FETCH_ASSOC) as $contents){
 										$info = '"info'.$contents['videogame_id'].'"';
 										$delete = '"delete'.$contents['videogame_id'].'"';
 										

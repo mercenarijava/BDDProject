@@ -81,12 +81,12 @@
 						<div class="bckg-table-body option">
 						<?php
 								
-								$exists = mysqli_num_rows($allOrders) > 0;
+								$exists = $allOrders->rowCount() > 0;
 								if($exists == 0){
 									echo "<h5 class='row'>Nessun ordine presente,<a href='home.php#shop' class='px-2'>Go to Shop...</a></h5>";
 								}
 								
-								while($order = mysqli_fetch_array($allOrders)) { 
+								foreach($allOrders->fetchAll(PDO::FETCH_ASSOC) as $order) { 
 									$info = '"info'.$order['id'].'"';
 									$delete = '"delete'.$order['id'].'"';
 									$modify = '"modify'.$order['id'].'"';
@@ -109,7 +109,7 @@
 														<hr style='border: 1px solid #000; width: 100%;'>
 													</div>";
 									$allContents = getContentsByOrderId($order['id']);
-									while($contents = mysqli_fetch_array($allContents)){
+									foreach($allContents->fetchAll(PDO::FETCH_ASSOC) as $contents){
 											echo	"<div class='row align-items-center mx-0 py-2' style='width:100%'>
 														<div class='col-3'>
 															<span scope='row'>".$contents['CONSOLE']."</span>

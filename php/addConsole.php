@@ -6,6 +6,7 @@ $name = $_GET['info'];
 
 connect();
 $q = "INSERT INTO console(name, model) VALUES('$name','$name')";
-$res = $GLOBALS['connection']->query($q);
+$prep = $GLOBALS['connection']->prepare($q);
+$prep->execute();
 disconnect();
 ?>

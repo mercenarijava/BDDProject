@@ -6,6 +6,7 @@ connect();
 $username = $_GET['info'];
 
 $sql = "DELETE FROM users WHERE username = '$username'";
-$result = $GLOBALS['connection']->query($sql);
+$prep = $GLOBALS['connection']->prepare($sql);
+$prep->execute();
 disconnect();
 ?>

@@ -13,6 +13,7 @@ $pwd = $_GET['pwd'];
 $old_username =$_GET['textUser'];
 
 $sql = "UPDATE users SET name='$nome',surname='$cognome',address='$indirizzo',phone='$cell',username='$username',password='$pwd' WHERE username='$old_username'";
-$result = $GLOBALS['connection']->query($sql);
+$prep = $GLOBALS['connection']->prepare($sql);
+$prep->execute();
 disconnect();
 ?>

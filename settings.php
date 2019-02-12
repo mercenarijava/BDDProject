@@ -8,9 +8,9 @@
 	
 	connect();
 	$result = getInfoUser($_SESSION['email']);
-	$result_payment = getCreditCard($result['payment_type']);
+	$result_payment = getCreditCard($result[0]['payment_type']);
 	if($result_payment){
-		$array = explode("-", $result_payment["expiration_date"]);
+		$array = explode("-", $result_payment[0]["expiration_date"]);
 		$year = $array[0];
 		$month = $array[1];
 	}
@@ -76,7 +76,7 @@
 									<form method="POST" id="account-form" class="bckg-form" action="php/settingsAccount.php">
 										<div class="form-group">
 											<span>Email:</span>
-											<input type="email" class="form-input padlock" name="email" id="email" placeholder="<?php echo $result["username"]; ?>" value="<?php echo $result["username"]; ?>" readonly required/>
+											<input type="email" class="form-input padlock" name="email" id="email" placeholder="<?php echo $result[0]["username"]; ?>" value="<?php echo $result[0]["username"]; ?>" readonly required/>
 											<span toggle="#email" class="zmdi zmdi zmdi-lock-outline field-icon toggle-email-padlock" id="lock-outline" onClick="padlock('lock-outline','email')"></span>
 										</div>
 										<div class="form-group">
@@ -101,22 +101,22 @@
 									<form method="post" id="personal-info-form" class="bckg-form" action="php/settingsInfo.php">
 										<div class="form-group">
 											<span>Name:</span>
-											<input type="text" class="form-input padlock" name="name" id="name" placeholder="<?php echo $result["name"]; ?>" value="<?php echo $result["name"]; ?>" readonly required/>
+											<input type="text" class="form-input padlock" name="name" id="name" placeholder="<?php echo $result[0]["name"]; ?>" value="<?php echo $result[0]["name"]; ?>" readonly required/>
 											<span toggle="#name" class="zmdi zmdi zmdi-lock-outline field-icon toggle-name" id="lock-outline-name" onClick="padlock('lock-outline-name','name')"></span>
 										</div>
 										<div class="form-group">
 											<span>Surname:</span>
-											<input type="text" class="form-input padlock" name="surname" id="surname" placeholder="<?php echo $result["surname"]; ?>" value="<?php echo $result["surname"]; ?>" readonly required/>
+											<input type="text" class="form-input padlock" name="surname" id="surname" placeholder="<?php echo $result[0]["surname"]; ?>" value="<?php echo $result[0]["surname"]; ?>" readonly required/>
 											<span toggle="#surname" class="zmdi zmdi zmdi-lock-outline field-icon toggle-surname" id="lock-outline-surname" onClick="padlock('lock-outline-surname','surname')"></span>
 										</div>
 										<div class="form-group">
 											<span>Address:</span>
-											<input type="text" class="form-input padlock" name="address" id="address" placeholder="<?php echo $result["address"]; ?>" value="<?php echo $result["address"]; ?>" readonly required/>
+											<input type="text" class="form-input padlock" name="address" id="address" placeholder="<?php echo $result[0]["address"]; ?>" value="<?php echo $result[0]["address"]; ?>" readonly required/>
 											<span toggle="#address" class="zmdi zmdi zmdi-lock-outline field-icon toggle-address" id="lock-outline-address" onClick="padlock('lock-outline-address','address')"></span>
 										</div>
 										<div class="form-group">
 											<span>Phone:</span>
-											<input type="tel" class="form-input padlock" name="phone" id="phone" placeholder="<?php echo $result["phone"]; ?>" value="<?php echo $result["phone"]; ?>" pattern="[1-9]{1}[0-9]{9}" readonly required/>
+											<input type="tel" class="form-input padlock" name="phone" id="phone" placeholder="<?php echo $result[0]["phone"]; ?>" value="<?php echo $result[0]["phone"]; ?>" pattern="[1-9]{1}[0-9]{9}" readonly required/>
 											<span toggle="#phone" class="zmdi zmdi zmdi-lock-outline field-icon toggle-phone" id="lock-outline-phone" onClick="padlock('lock-outline-phone','phone')"></span>
 										</div>
 										<div class="form-group">
@@ -143,12 +143,12 @@
 										<?php if($result_payment){?>
 										<div class="form-group row option" onmouseover="blurElements('info1'); show('modify1','delete1');" onmouseout="notBlurElements('info1'); hide('modify1','delete1');">
 											<div id="info1">
-												<span class="col-sm-4"><?php echo $result_payment["key_payment"]; ?></span>
-												<span class="col-sm-4"><?php echo $result_payment["expiration_date"]; ?></span>
-												<span class="col-sm-4"><?php echo $result_payment["owner"]; ?></span>
+												<span class="col-sm-4"><?php echo $result_payment[0]["key_payment"]; ?></span>
+												<span class="col-sm-4"><?php echo $result_payment[0]["expiration_date"]; ?></span>
+												<span class="col-sm-4"><?php echo $result_payment[0]["owner"]; ?></span>
 											</div>
 											<input type="button" name="submit" id="modify1" class="form-submit modify" value="Modifica" data-toggle="modal" data-target="#modifyCreditCardModal"/>
-											<input type="button" name="submit" id="delete1" class="form-submit delete" value="Elimina" onClick="deletePaymentType(<?php echo $result['payment_type'].",'".$_SESSION['email']."'"; ?>)"/>
+											<input type="button" name="submit" id="delete1" class="form-submit delete" value="Elimina" onClick="deletePaymentType(<?php echo $result[0]['payment_type'].",'".$_SESSION['email']."'"; ?>)"/>
 										</div>
 										<?php  }else{ echo "Nessuna carta di credito salvata."; }?>
 										<div class="form-group">
@@ -169,15 +169,15 @@
 											<form method="POST" id="modify-credit-card-form" class="bckg-form" action="php/modifyCreditCard.php">
 												<div class="form-group">
 													<span>ID:</span>
-													<input type="text" class="form-input" name="id" id="idModify" placeholder="<?php echo $result['payment_type']; ?>" value = "<?php echo $result['payment_type']; ?>" style="background-color: gainsboro;" readonly required/>
+													<input type="text" class="form-input" name="id" id="idModify" placeholder="<?php echo $result[0]['payment_type']; ?>" value = "<?php echo $result[0]['payment_type']; ?>" style="background-color: gainsboro;" readonly required/>
 												</div>
 												<div class="form-group">
 													<span>Numero di carta:</span>
-													<input type="text" class="form-input" name="number" id="numberModify" placeholder="<?php echo $result_payment["key_payment"]; ?>" value = "<?php echo $result_payment["key_payment"]; ?> "style="background-color: gainsboro;" readonly required/>
+													<input type="text" class="form-input" name="number" id="numberModify" placeholder="<?php echo $result_payment[0]["key_payment"]; ?>" value = "<?php echo $result_payment[0]["key_payment"]; ?> "style="background-color: gainsboro;" readonly required/>
 												</div>
 												<div class="form-group">
 													<span>Propietario:</span>
-													<input type="text" class="form-input" name="owner" id="ownerModify" placeholder="<?php echo $result_payment["owner"]; ?>" value = "<?php echo $result_payment["owner"]; ?>" required/>
+													<input type="text" class="form-input" name="owner" id="ownerModify" placeholder="<?php echo $result_payment[0]["owner"]; ?>" value = "<?php echo $result_payment[0]["owner"]; ?>" required/>
 												</div>
 												<div class="form-group">
 													<div class="row ml-0">
