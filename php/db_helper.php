@@ -345,7 +345,7 @@ function deleteCreditCard($id){
 
 function addCreditCard($username, $cardNumber, $owner, $cvv, $date){
 	//Ricavo il max id e il next_id
-	$sqlB= sprintf($GLOBALS['sql_get_max_payment_type']);
+	$sqlB= $GLOBALS['sql_get_max_payment_type'];
 	$statement1 = $GLOBALS['connection']->prepare($sqlB);
 	$statement1->execute();
 	$max_id = $statement1->fetchAll(PDO::FETCH_ASSOC);
@@ -369,6 +369,8 @@ function addCreditCard($username, $cardNumber, $owner, $cvv, $date){
 		
 		//Se esisteva gia un payment_type associato lo elimino
 		deleteCreditCard($card['payment_type']);
+	}else{
+		modifyCreditCardId($next_id, $username);
 	}
 	return $result;
 }
